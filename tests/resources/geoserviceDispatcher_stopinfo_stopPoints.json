@@ -1,0 +1,122 @@
+{"stopPoints": [
+  {
+    "category": "tram",
+    "id": "8059229492100788879",
+    "label": "D",
+    "latitude": 180231090,
+    "longitude": 71801964,
+    "name": "Teatr Słowackiego (324239)",
+    "shortName": "3242",
+    "stopPoint": "324239"
+  },
+  {
+    "category": "other",
+    "id": "8059229492100477779",
+    "label": "D",
+    "latitude": 180231237,
+    "longitude": 71802123,
+    "name": "Dworzec Główny (13139)",
+    "shortName": "131",
+    "stopPoint": "13139"
+  },
+  {
+    "category": "other",
+    "id": "8059229492100477769",
+    "label": "A",
+    "latitude": 180233117,
+    "longitude": 71800095,
+    "name": "Dworzec Główny (13129)",
+    "shortName": "131",
+    "stopPoint": "13129"
+  },
+  {
+    "category": "tram",
+    "id": "8059229492100788869",
+    "label": "A",
+    "latitude": 180233250,
+    "longitude": 71799874,
+    "name": "Teatr Słowackiego (324229)",
+    "shortName": "3242",
+    "stopPoint": "324229"
+  },
+  {
+    "category": "other",
+    "id": "8059229492100477789",
+    "label": "B",
+    "latitude": 180234020,
+    "longitude": 71802647,
+    "name": "Dworzec Główny (13149)",
+    "shortName": "131",
+    "stopPoint": "13149"
+  },
+  {
+    "category": "tram",
+    "id": "8059229492100788889",
+    "label": "B",
+    "latitude": 180234020,
+    "longitude": 71802647,
+    "name": "Teatr Słowackiego (324249)",
+    "shortName": "3242",
+    "stopPoint": "324249"
+  },
+  {
+    "category": "other",
+    "id": "8059229492100477759",
+    "label": "C",
+    "latitude": 180232570,
+    "longitude": 71803421,
+    "name": "Dworzec Główny (13119)",
+    "shortName": "131",
+    "stopPoint": "13119"
+  },
+  {
+    "category": "tram",
+    "id": "8059229492100788859",
+    "label": "C",
+    "latitude": 180232594,
+    "longitude": 71804259,
+    "name": "Teatr Słowackiego (324219)",
+    "shortName": "3242",
+    "stopPoint": "324219"
+  },
+  {
+    "category": "tram",
+    "id": "8059229492100725459",
+    "label": "A",
+    "latitude": 180244188,
+    "longitude": 71803274,
+    "name": "Dworzec Główny Zachód (260819)",
+    "shortName": "2608",
+    "stopPoint": "260819"
+  },
+  {
+    "category": "tram",
+    "id": "8059229492100725469",
+    "label": "B",
+    "latitude": 180244177,
+    "longitude": 71803469,
+    "name": "Dworzec Główny Zachód (260829)",
+    "shortName": "2608",
+    "stopPoint": "260829"
+  },
+  {
+    "category": "tram",
+    "id": "8059229492100581959",
+    "label": "",
+    "latitude": 180245518,
+    "longitude": 71811536,
+    "name": "Dworzec Główny Tunel (117319)",
+    "shortName": "1173",
+    "stopPoint": "117319"
+  },
+  {
+    "category": "tram",
+    "id": "8059229492100581969",
+    "label": "",
+    "latitude": 180245729,
+    "longitude": 71811509,
+    "name": "Dworzec Główny Tunel (117329)",
+    "shortName": "1173",
+    "stopPoint": "117329"
+  }
+]}

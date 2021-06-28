@@ -1,0 +1,273 @@
+{"routes": [
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Salwator",
+      "Wzgórza Krzesławickie"
+    ],
+    "id": "8059228650286874655",
+    "name": "1",
+    "shortName": "1"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Cmentarz Rakowicki",
+      "Salwator"
+    ],
+    "id": "8059228650286875578",
+    "name": "2",
+    "shortName": "2"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Krowodrza Górka",
+      "Nowy Bieżanów P+R"
+    ],
+    "id": "8059228650286874679",
+    "name": "3",
+    "shortName": "3"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Bronowice Małe",
+      "Wzgórza Krzesławickie"
+    ],
+    "id": "8059228650286875430",
+    "name": "4",
+    "shortName": "4"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Wzgórza Krzesławickie",
+      "Krowodrza Górka"
+    ],
+    "id": "8059228650286875566",
+    "name": "5",
+    "shortName": "5"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Cichy Kącik",
+      "Kurdwanów P+R"
+    ],
+    "id": "8059228650286875579",
+    "name": "6",
+    "shortName": "6"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Bronowice Małe",
+      "Borek Fałęcki"
+    ],
+    "id": "8059228650286875431",
+    "name": "8",
+    "shortName": "8"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Mistrzejowice",
+      "Nowy Bieżanów P+R"
+    ],
+    "id": "8059228650286874682",
+    "name": "9",
+    "shortName": "9"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Pleszów",
+      "Łagiewniki"
+    ],
+    "id": "8059228650286875580",
+    "name": "10",
+    "shortName": "10"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Czerwone Maki P+R",
+      "Mały Płaszów P+R"
+    ],
+    "id": "8059228650286874683",
+    "name": "11",
+    "shortName": "11"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Bronowice",
+      "Nowy Bieżanów P+R"
+    ],
+    "id": "8059228650286875432",
+    "name": "13",
+    "shortName": "13"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Bronowice",
+      "Mistrzejowice"
+    ],
+    "id": "8059228650286875567",
+    "name": "14",
+    "shortName": "14"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Pleszów",
+      "Cichy Kącik"
+    ],
+    "id": "8059228650286875554",
+    "name": "15",
+    "shortName": "15"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Bardosa",
+      "Mistrzejowice"
+    ],
+    "id": "8059228650286875581",
+    "name": "16",
+    "shortName": "16"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Krowodrza Górka",
+      "Czerwone Maki P+R"
+    ],
+    "id": "8059228650286874693",
+    "name": "18",
+    "shortName": "18"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Dworzec Towarowy",
+      "Borek Fałęcki"
+    ],
+    "id": "8059228650286874667",
+    "name": "19",
+    "shortName": "19"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Cichy Kącik",
+      "Mały Płaszów P+R"
+    ],
+    "id": "8059228650286875433",
+    "name": "20",
+    "shortName": "20"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Os. Piastów",
+      "Pleszów"
+    ],
+    "id": "8059228650286875322",
+    "name": "21",
+    "shortName": "21"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Kopiec Wandy",
+      "Borek Fałęcki"
+    ],
+    "id": "8059228650286874670",
+    "name": "22",
+    "shortName": "22"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Bronowice Małe",
+      "Kurdwanów P+R"
+    ],
+    "id": "8059228650286874686",
+    "name": "24",
+    "shortName": "24"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Dworzec Towarowy",
+      "Kopiec Wandy"
+    ],
+    "id": "8059228650286875583",
+    "name": "44",
+    "shortName": "44"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "TAURON Arena Kraków Wieczysta",
+      "Nowy Bieżanów P+R"
+    ],
+    "id": "8059228650286875568",
+    "name": "49",
+    "shortName": "49"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Kurdwanów P+R",
+      "Krowodrza Górka"
+    ],
+    "id": "8059228650286874687",
+    "name": "50",
+    "shortName": "50"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Os. Piastów",
+      "Czerwone Maki P+R"
+    ],
+    "id": "8059228650286874694",
+    "name": "52",
+    "shortName": "52"
+  },
+  {
+    "alerts": [],
+    "authority": "MPK",
+    "id": "8059228650286875240",
+    "name": "99",
+    "shortName": "99"
+  }
+]}
