@@ -31,7 +31,7 @@ def test_extract_autocomplete_stops() -> None:
 
 
 def test_extract_autocomplete_stops_json() -> None:
-    with open(resources_dir / 'lookup_autocomplete.json', 'r', encoding='utf-8') as f:
+    with open(resources_dir / 'lookup_autocomplete_json.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
 
     assert extract_autocomplete_stops_json(data) == [
@@ -52,6 +52,13 @@ def test_extract_stops() -> None:
 
     assert len(stops) == 4
 
+    assert stops[0] == Stop(id='8059230041856278737',
+                            name='Dworzec Główny',
+                            number='131',
+                            category='other',
+                            latitude=50.064665,
+                            longitude=19.945006111111113)
+
     assert stops[2] == Stop(id='8059230041856278863',
                             name='Dworzec Główny Zachód',
                             number='2608',
@@ -68,10 +75,19 @@ def test_extract_stop_points() -> None:
 
     assert len(stop_points) == 12
 
+    assert stop_points[1] == StopPoint(id='8059229492100477779',
+                                       name='Dworzec Główny (13139)',
+                                       code='13139',
+                                       category='other',
+                                       label='D',
+                                       latitude=50.0642325,
+                                       longitude=19.945034166666666)
+
     assert stop_points[9] == StopPoint(id='8059229492100725469',
                                        name='Dworzec Główny Zachód (260829)',
                                        code='260829',
                                        category='tram',
+                                       label='B',
                                        latitude=50.06782694444444,
                                        longitude=19.945408055555557)
 
