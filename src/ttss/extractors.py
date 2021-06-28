@@ -48,6 +48,7 @@ def extract_stop_points(data: dict, /) -> List[StopPoint]:
                   name=stop_point['name'],
                   code=stop_point['stopPoint'],
                   category=stop_point['category'],
+                  label=stop_point['label'],
                   latitude=stop_point['latitude'] / 3_600_000,
                   longitude=stop_point['longitude'] / 3_600_000)
         for stop_point in data['stopPoints']

@@ -8,5 +8,6 @@ class StopPoint:
     name: Optional[str] = None
     code: Optional[str] = None
     category: Optional[str] = None
+    label: Optional[str] = None
     latitude: Optional[float] = None
     longitude: Optional[float] = None
