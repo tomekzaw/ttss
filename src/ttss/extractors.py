@@ -25,7 +25,7 @@ def extract_autocomplete_stops(html_text: str, /) -> List[Stop]:
 
 def extract_autocomplete_stops_json(data: dict, /) -> List[Stop]:
     return [
-        Stop(number=stop['id'], name=stop['name'])
+        Stop(number=stop['id'], name=unescape(stop['name']))
         for stop in data[1:]
     ]
 
@@ -64,25 +64,27 @@ def extract_stop_point(data: dict, /) -> StopPoint:
 
 def extract_stop_passages(data: dict, /, *, now: datetime) -> Tuple[Stop, List[Passage]]:
     stop = Stop(name=data['stopName'])
-    passages = extract_stop_passages_list(data['old'], old=True, now=now) + \
-               extract_stop_passages_list(data['actual'], old=False, now=now)  # noqa
+    passages = extract_stop_passages_list(data['old'], stop=stop, now=now, old=True) + \
+               extract_stop_passages_list(data['actual'], stop=stop, now=now, old=False)  # noqa
     return stop, passages
 
 
-def extract_stop_passages_list(passages: List[Dict[str, Any]], /, *, old: bool, now: datetime) -> List[Passage]:
-    return [extract_stop_passage(passage, old=old, now=now) for passage in passages]
+def extract_stop_passages_list(passages: List[Dict[str, Any]], /, *,
+                               stop: Stop, now: datetime, old: bool) -> List[Passage]:
+    return [extract_stop_passage(passage, stop=stop, now=now, old=old) for passage in passages]
 
 
-def extract_stop_passage(passage: Dict[str, Any], /, *, old: bool, now: datetime) -> Passage:
-    trip = Trip(id=passage['tripId'],
-                route_number=passage['patternText'],
-                direction=passage['direction'])
-
+def extract_stop_passage(passage: Dict[str, Any], /, *, stop: Stop, now: datetime, old: bool) -> Passage:
     route = Route(id=passage['routeId'], name=passage['patternText'])
+
+    trip = Trip(id=passage['tripId'],
+                route=route,
+                direction=passage['direction'])
 
     vehicle = Vehicle(id=passage['vehicleId'], trip=trip) if 'vehicleId' in passage else None
 
     return Passage(id=passage['passageid'],
+                   stop=stop,
                    trip=trip,
                    route=route,
                    vehicle=vehicle,
@@ -97,31 +99,29 @@ def extract_stop_point_passages(data: dict, /, *, now: datetime) -> Tuple[Stop, 
     return extract_stop_passages(data, now=now)
 
 
-def extract_trip_passages_list(passages: List[Dict[str, Any]], /, *, old: bool) -> List[Passage]:
-    return [extract_trip_passage(passage, old=old) for passage in passages]
+def extract_trip_passages_list(passages: List[Dict[str, Any]], /, *, trip: Trip, old: bool) -> List[Passage]:
+    return [extract_trip_passage(passage, trip=trip, old=old) for passage in passages]
 
 
-def extract_trip_passage(data: dict, /, *, old: bool) -> Passage:
-    trip = Trip(route_number=data.get('patternText', None),
-                direction=data.get('direction', None))
-
+def extract_trip_passage(data: dict, /, *, trip: Trip, old: bool) -> Passage:
     stop = Stop(id=data['stop']['id'],
                 name=data['stop']['name'],
                 number=data['stop']['shortName'])
 
-    return Passage(trip=trip,
-                   stop=stop,
+    return Passage(stop=stop,
                    seq_num=int(data['stop_seq_num']),
                    actual_time=parse_time(data['actualTime']),
                    status=Status(data['status']),
+                   trip=trip,
+                   route=trip.route,
                    old=old)
 
 
 def extract_trip_passages(data: dict, /) -> Tuple[Optional[Trip], List[Passage]]:
-    trip = Trip(route_number=data.get('routeName', None),
-                direction=data.get('directionText', None))
-    passages = extract_trip_passages_list(data['old'], old=True) + \
-               extract_trip_passages_list(data['actual'], old=False)  # noqa
+    route = Route(name=data.get('routeName', None))
+    trip = Trip(route=route, direction=data.get('directionText', None))
+    passages = extract_trip_passages_list(data['old'], trip=trip, old=True) + \
+               extract_trip_passages_list(data['actual'], trip=trip, old=False)  # noqa
     return trip, passages
 
 
@@ -171,6 +171,8 @@ def extract_vehicles(data: dict, /) -> List[Vehicle]:
 
 
 def extract_vehicle(data: dict, /) -> Vehicle:
+    active = 'isDeleted' not in data
+
     latitude = data['latitude'] / 3_600_000 if 'latitude' in data else None
     longitude = data['longitude'] / 3_600_000 if 'longitude' in data else None
 
@@ -179,12 +181,16 @@ def extract_vehicle(data: dict, /) -> Vehicle:
     else:
         route_number = direction = None
 
-    trip = Trip(id=data.get('tripId', None),
-                route_number=route_number,
-                direction=direction)
+    if 'tripId' in data:
+        route = Route(name=route_number)
+        trip = Trip(id=data.get('tripId', None),
+                    route=route,
+                    direction=direction)
+    else:
+        trip = None
 
     return Vehicle(id=data['id'],
-                   active='isDeleted' not in data,
+                   active=active,
                    category=data.get('category', None),
                    latitude=latitude,
                    longitude=longitude,

@@ -1,0 +1,263 @@
+{
+  "actual": [
+    {
+      "actualRelativeTime": 336,
+      "direction": "Os.Piastów",
+      "mixedTime": "21:39",
+      "passageid": "-1188950300820628463",
+      "patternText": "52",
+      "plannedTime": "21:39",
+      "routeId": "8059228650286874694",
+      "status": "PLANNED",
+      "tripId": "8059232507167926286"
+    },
+    {
+      "actualRelativeTime": 576,
+      "actualTime": "21:43",
+      "direction": "Krowodrza Górka",
+      "mixedTime": "9 %UNIT_MIN%",
+      "passageid": "-1188950300820629382",
+      "patternText": "3",
+      "plannedTime": "21:43",
+      "routeId": "8059228650286874679",
+      "status": "PREDICTED",
+      "tripId": "8059232507168970772",
+      "vehicleId": "-1188950296502609386"
+    },
+    {
+      "actualRelativeTime": 636,
+      "actualTime": "21:44",
+      "direction": "Pleszów",
+      "mixedTime": "10 %UNIT_MIN%",
+      "passageid": "-1188950300820621389",
+      "patternText": "10",
+      "plannedTime": "21:44",
+      "routeId": "8059228650286875580",
+      "status": "PREDICTED",
+      "tripId": "8059232507167832079",
+      "vehicleId": "-1188950296502609562"
+    },
+    {
+      "actualRelativeTime": 1056,
+      "actualTime": "21:51",
+      "direction": "Bronowice Małe",
+      "mixedTime": "17 %UNIT_MIN%",
+      "passageid": "-1188950300820625225",
+      "patternText": "24",
+      "plannedTime": "21:50",
+      "routeId": "8059228650286874686",
+      "status": "PREDICTED",
+      "tripId": "8059232507167901713",
+      "vehicleId": "-1188950296502609290"
+    },
+    {
+      "actualRelativeTime": 1476,
+      "actualTime": "21:58",
+      "direction": "Krowodrza Górka",
+      "mixedTime": "24 %UNIT_MIN%",
+      "passageid": "-1188950300820622413",
+      "patternText": "3",
+      "plannedTime": "21:58",
+      "routeId": "8059228650286874679",
+      "status": "PREDICTED",
+      "tripId": "8059232507168974868",
+      "vehicleId": "-1188950296502609426"
+    },
+    {
+      "actualRelativeTime": 1536,
+      "actualTime": "21:59",
+      "direction": "Os.Piastów",
+      "mixedTime": "25 %UNIT_MIN%",
+      "passageid": "-1188950300820620828",
+      "patternText": "52",
+      "plannedTime": "21:59",
+      "routeId": "8059228650286874694",
+      "status": "PREDICTED",
+      "tripId": "8059232507167668238",
+      "vehicleId": "-1188950296502609166"
+    },
+    {
+      "actualRelativeTime": 1836,
+      "actualTime": "22:04",
+      "direction": "Pleszów",
+      "mixedTime": "30 %UNIT_MIN%",
+      "passageid": "-1188950300820614405",
+      "patternText": "10",
+      "plannedTime": "22:04",
+      "routeId": "8059228650286875580",
+      "status": "PREDICTED",
+      "tripId": "8059232507167836175",
+      "vehicleId": "-1188950296502610230"
+    },
+    {
+      "actualRelativeTime": 2196,
+      "actualTime": "22:10",
+      "direction": "Bronowice Małe",
+      "mixedTime": "36 %UNIT_MIN%",
+      "passageid": "-1188950300820616562",
+      "patternText": "24",
+      "plannedTime": "22:10",
+      "routeId": "8059228650286874686",
+      "status": "PREDICTED",
+      "tripId": "8059232507169277970",
+      "vehicleId": "-1188950296502609302"
+    },
+    {
+      "actualRelativeTime": 2676,
+      "actualTime": "22:18",
+      "direction": "Krowodrza Górka",
+      "mixedTime": "44 %UNIT_MIN%",
+      "passageid": "-1188950300820613866",
+      "patternText": "3",
+      "plannedTime": "22:18",
+      "routeId": "8059228650286874679",
+      "status": "PREDICTED",
+      "tripId": "8059232507167803412",
+      "vehicleId": "-1188950296502609458"
+    },
+    {
+      "actualRelativeTime": 2736,
+      "actualTime": "22:19",
+      "direction": "Os.Piastów",
+      "mixedTime": "45 %UNIT_MIN%",
+      "passageid": "-1188950300820612250",
+      "patternText": "52",
+      "plannedTime": "22:19",
+      "routeId": "8059228650286874694",
+      "status": "PREDICTED",
+      "tripId": "8059232507167938575",
+      "vehicleId": "-1188950296502609121"
+    },
+    {
+      "actualRelativeTime": 2796,
+      "actualTime": "22:20",
+      "direction": "Bardosa",
+      "mixedTime": "46 %UNIT_MIN%",
+      "passageid": "-1188950300820608061",
+      "patternText": "10",
+      "plannedTime": "22:20",
+      "routeId": "8059228650286875580",
+      "status": "PREDICTED",
+      "tripId": "8059232507169220623",
+      "vehicleId": "-1188950296502610275"
+    },
+    {
+      "actualRelativeTime": 3396,
+      "actualTime": "22:30",
+      "direction": "Bronowice Małe",
+      "mixedTime": "56 %UNIT_MIN%",
+      "passageid": "-1188950300820608365",
+      "patternText": "24",
+      "plannedTime": "22:30",
+      "routeId": "8059228650286874686",
+      "status": "PREDICTED",
+      "tripId": "8059232507169282067",
+      "vehicleId": "-1188950296502609342"
+    },
+    {
+      "actualRelativeTime": 3636,
+      "direction": "Bardosa",
+      "mixedTime": "22:34",
+      "passageid": "-1188950300820600595",
+      "patternText": "10",
+      "plannedTime": "22:34",
+      "routeId": "8059228650286875580",
+      "status": "PLANNED",
+      "tripId": "8059232507168598031"
+    },
+    {
+      "actualRelativeTime": 3876,
+      "actualTime": "22:38",
+      "direction": "Krowodrza Górka",
+      "mixedTime": "22:38",
+      "passageid": "-1188950300820605928",
+      "patternText": "3",
+      "plannedTime": "22:38",
+      "routeId": "8059228650286874679",
+      "status": "PREDICTED",
+      "tripId": "8059232507168765973",
+      "vehicleId": "-1188950296502609298"
+    },
+    {
+      "actualRelativeTime": 3936,
+      "actualTime": "22:39",
+      "direction": "Os.Piastów",
+      "mixedTime": "22:39",
+      "passageid": "-1188950300820604057",
+      "patternText": "52",
+      "plannedTime": "22:39",
+      "routeId": "8059228650286874694",
+      "status": "PREDICTED",
+      "tripId": "8059232507168634895",
+      "vehicleId": "-1188950296502614876"
+    }
+  ],
+  "directions": [],
+  "firstPassageTime": 1624907004000,
+  "generalAlerts": [],
+  "lastPassageTime": 1624912740000,
+  "old": [{
+    "actualRelativeTime": -204,
+    "direction": "Bronowice Małe",
+    "mixedTime": "0 %UNIT_MIN%",
+    "passageid": "-1188950300820634092",
+    "patternText": "24",
+    "plannedTime": "21:30",
+    "routeId": "8059228650286874686",
+    "status": "DEPARTED",
+    "tripId": "8059232507168618514",
+    "vehicleId": "-1188950296502609670"
+  }],
+  "routes": [
+    {
+      "alerts": [],
+      "authority": "MPK",
+      "directions": [
+        "Krowodrza Górka",
+        "Nowy Bieżanów P+R"
+      ],
+      "id": "8059228650286874679",
+      "name": "3",
+      "routeType": "tram",
+      "shortName": "3"
+    },
+    {
+      "alerts": [],
+      "authority": "MPK",
+      "directions": [
+        "Pleszów",
+        "Łagiewniki"
+      ],
+      "id": "8059228650286875580",
+      "name": "10",
+      "routeType": "tram",
+      "shortName": "10"
+    },
+    {
+      "alerts": [],
+      "authority": "MPK",
+      "directions": [
+        "Bronowice Małe",
+        "Kurdwanów P+R"
+      ],
+      "id": "8059228650286874686",
+      "name": "24",
+      "routeType": "tram",
+      "shortName": "24"
+    },
+    {
+      "alerts": [],
+      "authority": "MPK",
+      "directions": [
+        "Os. Piastów",
+        "Czerwone Maki P+R"
+      ],
+      "id": "8059228650286874694",
+      "name": "52",
+      "routeType": "tram",
+      "shortName": "52"
+    }
+  ],
+  "stopName": "Teatr Słowackiego",
+  "stopShortName": "324239"
+}

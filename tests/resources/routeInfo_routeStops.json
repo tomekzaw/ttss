@@ -1,0 +1,260 @@
+{
+  "route": {
+    "alerts": [],
+    "authority": "MPK",
+    "directions": [
+      "Salwator",
+      "Wzgórza Krzesławickie"
+    ],
+    "id": "8059228650286874655",
+    "name": "1",
+    "shortName": "1"
+  },
+  "stops": [
+    {
+      "id": "8059230041856278841",
+      "name": "Bieńczycka",
+      "number": "867"
+    },
+    {
+      "id": "8059230041856278820",
+      "name": "Borsucza",
+      "number": "612"
+    },
+    {
+      "id": "8059230041856278821",
+      "name": "Brożka (nż)",
+      "number": "613"
+    },
+    {
+      "id": "8059230041856278775",
+      "name": "Centralna",
+      "number": "409"
+    },
+    {
+      "id": "8059230041856279099",
+      "name": "Cienista",
+      "number": "3037"
+    },
+    {
+      "id": "8059230041856278785",
+      "name": "Darwina",
+      "number": "435"
+    },
+    {
+      "id": "8059230041856278762",
+      "name": "Dąbie",
+      "number": "370"
+    },
+    {
+      "id": "8059230041856278800",
+      "name": "Elektromontaż (nż)",
+      "number": "464"
+    },
+    {
+      "id": "8059230041856278760",
+      "name": "Fabryczna",
+      "number": "368"
+    },
+    {
+      "id": "8059230041856278747",
+      "name": "Filharmonia",
+      "number": "322"
+    },
+    {
+      "id": "8059230041856278759",
+      "name": "Francesco Nullo",
+      "number": "367"
+    },
+    {
+      "id": "8059230041856278756",
+      "name": "Hala Targowa",
+      "number": "363"
+    },
+    {
+      "id": "8059230041856278870",
+      "name": "Jarzębiny",
+      "number": "2685"
+    },
+    {
+      "id": "8059230041856278744",
+      "name": "Jubilat",
+      "number": "319"
+    },
+    {
+      "id": "8059230041856278811",
+      "name": "Kapelanka",
+      "number": "576"
+    },
+    {
+      "id": "8059230041856278813",
+      "name": "Kobierzyńska",
+      "number": "584"
+    },
+    {
+      "id": "8059230041856278742",
+      "name": "Komorowskiego",
+      "number": "313"
+    },
+    {
+      "id": "8059230041856278807",
+      "name": "Korona",
+      "number": "571"
+    },
+    {
+      "id": "8059230041856279632",
+      "name": "M1 al. Pokoju",
+      "number": "3472"
+    },
+    {
+      "id": "8059230041856278761",
+      "name": "Ofiar Dąbia",
+      "number": "369"
+    },
+    {
+      "id": "8059230041856278754",
+      "name": "Orzeszkowej",
+      "number": "361"
+    },
+    {
+      "id": "8059230041856278802",
+      "name": "PH",
+      "number": "466"
+    },
+    {
+      "id": "8059230041856278822",
+      "name": "PT",
+      "number": "614"
+    },
+    {
+      "id": "8059230041856278753",
+      "name": "Plac Wolnica",
+      "number": "360"
+    },
+    {
+      "id": "8059230041856278853",
+      "name": "Plac Wszystkich Świętych",
+      "number": "1360"
+    },
+    {
+      "id": "8059230041856279097",
+      "name": "Plaza",
+      "number": "3033"
+    },
+    {
+      "id": "8059230041856278750",
+      "name": "Poczta Główna",
+      "number": "357"
+    },
+    {
+      "id": "8059230041856279103",
+      "name": "Rondo 308. Dywizjonu",
+      "number": "3041"
+    },
+    {
+      "id": "8059230041856278774",
+      "name": "Rondo Czyżyńskie",
+      "number": "408"
+    },
+    {
+      "id": "8059230041856279485",
+      "name": "Rondo Grunwaldzkie",
+      "number": "3338"
+    },
+    {
+      "id": "8059230041856278758",
+      "name": "Rondo Grzegórzeckie",
+      "number": "365"
+    },
+    {
+      "id": "8059230041856278882",
+      "name": "Rondo Kocmyrzowskie im. Ks. Gorzelanego",
+      "number": "2745"
+    },
+    {
+      "id": "8059230041856278818",
+      "name": "Rondo Matecznego",
+      "number": "610"
+    },
+    {
+      "id": "8059230041856278819",
+      "name": "Rzemieślnicza",
+      "number": "611"
+    },
+    {
+      "id": "8059230041856278741",
+      "name": "Salwator",
+      "number": "311"
+    },
+    {
+      "id": "8059230041856278808",
+      "name": "Smolki",
+      "number": "572"
+    },
+    {
+      "id": "8059230041856278751",
+      "name": "Starowiślna",
+      "number": "358"
+    },
+    {
+      "id": "8059230041856278752",
+      "name": "Stradom",
+      "number": "359"
+    },
+    {
+      "id": "8059230041856278810",
+      "name": "Szwedzka",
+      "number": "575"
+    },
+    {
+      "id": "8059230041856278812",
+      "name": "Słomiana",
+      "number": "577"
+    },
+    {
+      "id": "8059230041856279633",
+      "name": "TAURON Arena Kraków al. Pokoju (nż)",
+      "number": "3473"
+    },
+    {
+      "id": "8059230041856278780",
+      "name": "Teatr Ludowy",
+      "number": "420"
+    },
+    {
+      "id": "8059230041856278914",
+      "name": "Teatr Variété",
+      "number": "2859"
+    },
+    {
+      "id": "8059230041856278749",
+      "name": "Wawel",
+      "number": "325"
+    },
+    {
+      "id": "8059230041856278858",
+      "name": "Wańkowicza",
+      "number": "2543"
+    },
+    {
+      "id": "8059230041856278784",
+      "name": "Wiadukty",
+      "number": "434"
+    },
+    {
+      "id": "8059230041856278786",
+      "name": "Wzgórza Krzesławickie",
+      "number": "442"
+    },
+    {
+      "id": "8059230041856278842",
+      "name": "Łagiewniki",
+      "number": "922"
+    },
+    {
+      "id": "8059230041856279630",
+      "name": "św. Gertrudy",
+      "number": "3470"
+    }
+  ]
+}
