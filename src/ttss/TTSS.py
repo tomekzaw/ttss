@@ -24,12 +24,13 @@ from ttss.utils import timestamp_ms
 @dataclass
 class TTSS:
     base_url: str
+    language: str = 'pl'
 
     def autocomplete_stops(self, query: str) -> List[Stop]:
         url = f'{self.base_url}/internetservice/services/lookup/autocomplete'
         params = {
             'query': query,
-            'language': 'pl',
+            'language': self.language,
         }
         response = requests.post(url, params)
         response.raise_for_status()
@@ -39,7 +40,7 @@ class TTSS:
         url = f'{self.base_url}/internetservice/services/lookup/autocomplete/json'
         params = {
             'query': query,
-            'language': 'pl',
+            'language': self.language,
         }
         response = requests.post(url, params)
         response.raise_for_status()
@@ -77,7 +78,7 @@ class TTSS:
         url = f'{self.base_url}/internetservice/services/stopInfo/stop'
         params = {
             'stop': stop_number,
-            'language': 'pl',
+            'language': self.language,
         }
         response = requests.post(url, params)
         if response.status_code == 404:
@@ -89,7 +90,7 @@ class TTSS:
         url = f'{self.base_url}/internetservice/services/stopInfo/stopPoint'
         params = {
             'stopPoint': stop_point_code,
-            'language': 'pl',
+            'language': self.language,
         }
         response = requests.post(url, params)
         if response.status_code == 404:
@@ -102,7 +103,7 @@ class TTSS:
         now = datetime.now().replace(microsecond=0)
         url = f'{self.base_url}/internetservice/services/passageInfo/stopPassages/stop'
         params = {
-            'language': 'pl',
+            'language': self.language,
             'stop': stop_number,
             'mode': mode.value,
             'timeFrame': timeframe,
@@ -117,7 +118,7 @@ class TTSS:
         now = datetime.now().replace(microsecond=0)
         url = f'{self.base_url}/internetservice/services/passageInfo/stopPassages/stopPoint'
         params = {
-            'language': 'pl',
+            'language': self.language,
             'stopPoint': stop_point_id,
             'mode': mode.value,
             'timeFrame': timeframe,
@@ -131,7 +132,7 @@ class TTSS:
                           mode: Mode = Mode.DEPARTURES) -> Tuple[Optional[Trip], List[Passage]]:
         url = f'{self.base_url}/internetservice/services/tripInfo/tripPassages'
         params = {
-            'language': 'pl',
+            'language': self.language,
             'tripId': trip_id,
             'mode': mode.value,
             'vehicleId': vehicle_id,
@@ -143,7 +144,7 @@ class TTSS:
 
     def get_routes(self) -> List[Route]:
         url = f'{self.base_url}/internetservice/services/routeInfo/route'
-        params = {'language': 'pl'}
+        params = {'language': self.language}
         response = requests.post(url, params)
         response.raise_for_status()
         return extract_routes(response.json())
@@ -152,7 +153,7 @@ class TTSS:
         url = f'{self.base_url}/internetservice/services/routeInfo/routeStops'
         params = {
             'routeId': route_id,
-            'language': 'pl',
+            'language': self.language,
             'cacheBuster': timestamp_ms(),
         }
         response = requests.post(url, params)
