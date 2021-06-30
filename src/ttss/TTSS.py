@@ -113,13 +113,13 @@ class TTSS:
         response.raise_for_status()
         return extract_stop_passages(response.json(), now=now)
 
-    def get_stop_point_passages(self, stop_point_id: str, *,
+    def get_stop_point_passages(self, stop_point_code: str, *,
                                 mode: Mode = Mode.DEPARTURES, timeframe: int = 120) -> Tuple[Stop, List[Passage]]:
         now = datetime.now().replace(microsecond=0)
         url = f'{self.base_url}/internetservice/services/passageInfo/stopPassages/stopPoint'
         params = {
             'language': self.language,
-            'stopPoint': stop_point_id,
+            'stopPoint': stop_point_code,
             'mode': mode.value,
             'timeFrame': timeframe,
             'cacheBuster': timestamp_ms(),

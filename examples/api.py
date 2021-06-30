@@ -45,7 +45,7 @@ if __name__ == '__main__':
     trip_id = passage.trip.id
     vehicle_id = passage.vehicle.id
 
-    stop, passages = ttss.get_stop_point_passages(stop_point_id=stop_point_code)
+    stop, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code)
     pprint(stop)
     pprint(passages)
 
