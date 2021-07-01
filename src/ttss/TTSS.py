@@ -116,12 +116,19 @@ class TTSS:
         return extract_stop_point(response.json())
 
     def get_stop_passages(self, stop_number: str, *,
-                          mode: Mode = Mode.DEPARTURES, timeframe: int = 120) -> Tuple[Stop, List[Passage]]:
+                          authority: Optional[str] = None,
+                          route_id: Optional[str] = None,
+                          direction: Optional[str] = None,
+                          mode: Mode = Mode.DEPARTURES,
+                          timeframe: int = 120) -> Tuple[Stop, List[Passage]]:
         now = datetime.now().replace(microsecond=0)
         url = f'{self.base_url}/internetservice/services/passageInfo/stopPassages/stop'
         params = {
             'language': self.language,
             'stop': stop_number,
+            'authority': authority,
+            'routeId': route_id,
+            'direction': direction,
             'mode': mode.value,
             'timeFrame': timeframe,
             'cacheBuster': timestamp_ms(),
@@ -131,12 +138,19 @@ class TTSS:
         return extract_stop_passages(response.json(), now=now)
 
     def get_stop_point_passages(self, stop_point_code: str, *,
-                                mode: Mode = Mode.DEPARTURES, timeframe: int = 120) -> Tuple[Stop, List[Passage]]:
+                                authority: Optional[str] = None,
+                                route_id: Optional[str] = None,
+                                direction: Optional[str] = None,
+                                mode: Mode = Mode.DEPARTURES,
+                                timeframe: int = 120) -> Tuple[Stop, List[Passage]]:
         now = datetime.now().replace(microsecond=0)
         url = f'{self.base_url}/internetservice/services/passageInfo/stopPassages/stopPoint'
         params = {
             'language': self.language,
             'stopPoint': stop_point_code,
+            'authority': authority,
+            'routeId': route_id,
+            'direction': direction,
             'mode': mode.value,
             'timeFrame': timeframe,
             'cacheBuster': timestamp_ms(),
