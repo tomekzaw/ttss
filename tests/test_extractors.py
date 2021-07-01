@@ -234,8 +234,8 @@ def test_extract_stop_point_passages() -> None:
                                   vehicle=expected_vehicle)
 
 
-def test_extract_trip_passages() -> None:
-    with open(resources_dir / 'tripInfo_tripPassages.json', 'r', encoding='utf-8') as f:
+def test_extract_trip_passages_actual() -> None:
+    with open(resources_dir / 'tripInfo_tripPassages_actual.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
 
     trip, passages = extract_trip_passages(data)
@@ -259,6 +259,35 @@ def test_extract_trip_passages() -> None:
                                   status=Status.PREDICTED,
                                   stop=Stop(id='8059230041856278719', name='Teatr Bagatela', number='77'),
                                   seq_num=18,
+                                  trip=expected_trip,
+                                  route=expected_route)
+
+
+def test_extract_trip_passages_planned() -> None:
+    with open(resources_dir / 'tripInfo_tripPassages_planned.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    trip, passages = extract_trip_passages(data)
+
+    expected_route = Route(name='20')
+    expected_trip = Trip(route=expected_route, direction='Mały Płaszów P+R')
+    assert trip == expected_trip
+
+    assert len(passages) == 13
+
+    assert passages[0] == Passage(planned_time=time(13, 26),
+                                  old=True,
+                                  status=Status.PLANNED,
+                                  stop=Stop(id='8059230041856278719', name='Teatr Bagatela', number='77'),
+                                  seq_num=7,
+                                  trip=expected_trip,
+                                  route=expected_route)
+
+    assert passages[2] == Passage(planned_time=time(13, 30),
+                                  old=False,
+                                  status=Status.PLANNED,
+                                  stop=Stop(id='8059230041856279380', name='Teatr Słowackiego', number='3242'),
+                                  seq_num=9,
                                   trip=expected_trip,
                                   route=expected_route)
 

@@ -1,0 +1,138 @@
+{
+  "actual": [
+    {
+      "actualTime": "21:34",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278719",
+        "name": "Teatr Bagatela",
+        "shortName": "77"
+      },
+      "stop_seq_num": "18"
+    },
+    {
+      "actualTime": "21:35",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278720",
+        "name": "Batorego",
+        "shortName": "78"
+      },
+      "stop_seq_num": "19"
+    },
+    {
+      "actualTime": "21:37",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278721",
+        "name": "Plac Inwalidów",
+        "shortName": "79"
+      },
+      "stop_seq_num": "20"
+    },
+    {
+      "actualTime": "21:38",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278722",
+        "name": "Urzędnicza",
+        "shortName": "83"
+      },
+      "stop_seq_num": "21"
+    },
+    {
+      "actualTime": "21:39",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278723",
+        "name": "Biprostal",
+        "shortName": "84"
+      },
+      "stop_seq_num": "22"
+    },
+    {
+      "actualTime": "21:40",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278725",
+        "name": "Uniwersytet Pedagogiczny",
+        "shortName": "88"
+      },
+      "stop_seq_num": "23"
+    },
+    {
+      "actualTime": "21:41",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278847",
+        "name": "Głowackiego",
+        "shortName": "1049"
+      },
+      "stop_seq_num": "24"
+    },
+    {
+      "actualTime": "21:43",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278726",
+        "name": "Bronowice",
+        "shortName": "89"
+      },
+      "stop_seq_num": "25"
+    },
+    {
+      "actualTime": "21:44",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278738",
+        "name": "Wesele",
+        "shortName": "133"
+      },
+      "stop_seq_num": "26"
+    },
+    {
+      "actualTime": "21:46",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856279586",
+        "name": "Bronowice SKA",
+        "shortName": "3459"
+      },
+      "stop_seq_num": "27"
+    },
+    {
+      "actualTime": "21:48",
+      "status": "PREDICTED",
+      "stop": {
+        "id": "8059230041856278740",
+        "name": "Bronowice Małe",
+        "shortName": "135"
+      },
+      "stop_seq_num": "28"
+    }
+  ],
+  "directionText": "Bronowice Małe",
+  "old": [
+    {
+      "actualTime": "21:30",
+      "status": "DEPARTED",
+      "stop": {
+        "id": "8059230041856279380",
+        "name": "Teatr Słowackiego",
+        "shortName": "3242"
+      },
+      "stop_seq_num": "16"
+    },
+    {
+      "actualTime": "21:32",
+      "status": "DEPARTED",
+      "stop": {
+        "id": "8059230041856279096",
+        "name": "Stary Kleparz",
+        "shortName": "3032"
+      },
+      "stop_seq_num": "17"
+    }
+  ],
+  "routeName": "24"
+}
