@@ -14,6 +14,12 @@ if __name__ == '__main__':
     stops = ttss.autocomplete_stops_json(query='Rondo')
     pprint(stops)
 
+    results = ttss.lookup_fulltext(search='Rondo')
+    pprint(results)
+
+    results = ttss.lookup_fulltext(search='3041')
+    pprint(results)
+
     stops = ttss.get_stops_by_character(character='A')
     pprint(stops)
 

@@ -1,7 +1,7 @@
 import re
 from datetime import timedelta, datetime
 from html import unescape
-from typing import List, Dict, Tuple, Optional, Any
+from typing import List, Dict, Tuple, Optional, Any, Union
 
 from ttss.Passage import Passage
 from ttss.Path import Path
@@ -27,6 +27,17 @@ def extract_autocomplete_stops_json(data: dict, /) -> List[Stop]:
     return [
         Stop(number=stop['id'], name=unescape(stop['name']))
         for stop in data[1:]
+    ]
+
+
+def extract_lookup_fulltext(data: dict, /) -> List[Union[Stop, StopPoint]]:
+    return [
+        (
+            Stop(number=result['stop'], name=result['stopPassengerName'])
+            if 'stop' in result
+            else StopPoint(code=result['stopPoint'], name=result['stopPointPassengerName'])
+        )
+        for result in data['results']
     ]
 
 
