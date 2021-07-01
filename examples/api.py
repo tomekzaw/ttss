@@ -51,10 +51,36 @@ if __name__ == '__main__':
     pprint(stop)
     pprint(passages)
     passage = next(passage for passage in passages if passage.vehicle is not None)
-    trip_id = passage.trip.id
     vehicle_id = passage.vehicle.id
+    trip_id = passage.trip.id
+    route_id = passage.trip.route.id
+    direction = passage.trip.direction
+
+    stop, passages = ttss.get_stop_passages(stop_number=stop_number, route_id=route_id)
+    pprint(stop)
+    pprint(passages)
+
+    stop, passages = ttss.get_stop_passages(stop_number=stop_number, direction=direction)
+    pprint(stop)
+    pprint(passages)
+
+    stop, passages = ttss.get_stop_passages(stop_number=stop_number, route_id=route_id, direction=direction)
+    pprint(stop)
+    pprint(passages)
 
     stop, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code)
+    pprint(stop)
+    pprint(passages)
+
+    stop, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code, route_id=route_id)
+    pprint(stop)
+    pprint(passages)
+
+    stop, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code, direction=direction)
+    pprint(stop)
+    pprint(passages)
+
+    stop, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code, route_id=route_id, direction=direction)
     pprint(stop)
     pprint(passages)
 
