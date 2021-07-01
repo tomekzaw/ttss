@@ -1,0 +1,32 @@
+{"stops": [
+  {
+    "id": "8059230041856278824",
+    "name": "Dworcowa",
+    "number": "623"
+  },
+  {
+    "id": "8059230041856278737",
+    "name": "Dworzec Główny",
+    "number": "131"
+  },
+  {
+    "id": "8059230041856278850",
+    "name": "Dworzec Główny Tunel",
+    "number": "1173"
+  },
+  {
+    "id": "8059230041856278863",
+    "name": "Dworzec Główny Zachód",
+    "number": "2608"
+  },
+  {
+    "id": "8059230041856278952",
+    "name": "Dworzec Płaszów Estakada",
+    "number": "2870"
+  },
+  {
+    "id": "8059230041856278714",
+    "name": "Dworzec Towarowy",
+    "number": "70"
+  }
+]}

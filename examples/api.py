@@ -14,6 +14,9 @@ if __name__ == '__main__':
     stops = ttss.autocomplete_stops_json(query='Rondo')
     pprint(stops)
 
+    stops = ttss.get_stops_by_character(character='A')
+    pprint(stops)
+
     stops = ttss.get_stops()
     pprint(stops)
 
