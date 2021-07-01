@@ -2,5 +2,5 @@ from enum import Enum
 
 
 class Mode(Enum):
-    DEPARTURES = 'departures'
-    ARRIVALS = 'arrivals'
+    DEPARTURES = 'departure'
+    ARRIVALS = 'arrival'
