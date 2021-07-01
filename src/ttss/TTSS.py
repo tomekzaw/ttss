@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Tuple, List, Optional
+from typing import Tuple, List, Optional, Union
 
 import requests
 
@@ -17,7 +17,7 @@ from ttss.Vehicle import Vehicle
 from ttss.extractors import extract_autocomplete_stops, extract_autocomplete_stops_json, extract_stops, \
     extract_stop_points, extract_stop, extract_stop_point, extract_stop_passages, extract_stop_point_passages, \
     extract_trip_passages, extract_routes, extract_route_stops, extract_route_paths, extract_vehicle_paths, \
-    extract_vehicles, extract_stops_by_character
+    extract_vehicles, extract_stops_by_character, extract_lookup_fulltext
 from ttss.utils import timestamp_ms
 
 
@@ -45,6 +45,13 @@ class TTSS:
         response = requests.post(url, params)
         response.raise_for_status()
         return extract_autocomplete_stops_json(response.json())
+
+    def lookup_fulltext(self, search: str) -> List[Union[Stop, StopPoint]]:
+        url = f'{self.base_url}/internetservice/services/lookup/fulltext'
+        params = {'search': search}
+        response = requests.post(url, params)
+        response.raise_for_status()
+        return extract_lookup_fulltext(response.json())
 
     def get_stops_by_character(self, character: str) -> List[Stop]:
         url = f'{self.base_url}/internetservice/services/lookup/stopsByCharacter'

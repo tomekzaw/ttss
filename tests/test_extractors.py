@@ -12,7 +12,7 @@ from ttss.Vehicle import Vehicle
 from ttss.extractors import extract_autocomplete_stops, extract_autocomplete_stops_json, extract_stops, \
     extract_stop_points, extract_stop, extract_stop_point, extract_stop_passages, extract_trip_passages, \
     extract_routes, extract_route_stops, extract_route_paths, extract_vehicle_paths, extract_vehicles, \
-    extract_stops_by_character
+    extract_stops_by_character, extract_lookup_fulltext
 
 resources_dir = Path(__file__).parent / 'resources'
 
@@ -42,6 +42,31 @@ def test_extract_autocomplete_stops_json() -> None:
         Stop(name='Dworzec Główny Zachód', number='2608'),
         Stop(name='Dworzec Płaszów Estakada', number='2870'),
         Stop(name='Dworzec Towarowy', number='70'),
+    ]
+
+
+def test_extract_lookup_fulltext_stops() -> None:
+    with open(resources_dir / 'lookup_fulltext_stops.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    assert extract_lookup_fulltext(data) == [
+        Stop(name='Dworcowa', number='623'),
+        Stop(name='Dworzec Główny', number='131'),
+        Stop(name='Dworzec Główny Tunel', number='1173'),
+        Stop(name='Dworzec Główny Zachód', number='2608'),
+        Stop(name='Dworzec Płaszów Estakada', number='2870'),
+        Stop(name='Dworzec Towarowy', number='70'),
+    ]
+
+
+def test_extract_lookup_fulltext_stop_points() -> None:
+    with open(resources_dir / 'lookup_fulltext_stopPoints.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    assert extract_lookup_fulltext(data) == [
+        StopPoint(name='Dworcowa (62319)', code='62319'),
+        StopPoint(name='Dworcowa (62329)', code='62329'),
+        StopPoint(name='Dworcowa (62339)', code='62339'),
     ]
 
 
