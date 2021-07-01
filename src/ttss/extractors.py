@@ -30,6 +30,13 @@ def extract_autocomplete_stops_json(data: dict, /) -> List[Stop]:
     ]
 
 
+def extract_stops_by_character(data: dict, /) -> List[Stop]:
+    return [
+        Stop(id=stop['id'], name=stop['name'], number=stop['number'])
+        for stop in data['stops']
+    ]
+
+
 def extract_stops(data: dict, /) -> List[Stop]:
     return [
         Stop(id=stop['id'],

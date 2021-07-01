@@ -11,7 +11,8 @@ from ttss.Trip import Trip
 from ttss.Vehicle import Vehicle
 from ttss.extractors import extract_autocomplete_stops, extract_autocomplete_stops_json, extract_stops, \
     extract_stop_points, extract_stop, extract_stop_point, extract_stop_passages, extract_trip_passages, \
-    extract_routes, extract_route_stops, extract_route_paths, extract_vehicle_paths, extract_vehicles
+    extract_routes, extract_route_stops, extract_route_paths, extract_vehicle_paths, extract_vehicles, \
+    extract_stops_by_character
 
 resources_dir = Path(__file__).parent / 'resources'
 
@@ -41,6 +42,20 @@ def test_extract_autocomplete_stops_json() -> None:
         Stop(name='Dworzec Główny Zachód', number='2608'),
         Stop(name='Dworzec Płaszów Estakada', number='2870'),
         Stop(name='Dworzec Towarowy', number='70'),
+    ]
+
+
+def test_extract_stops_by_character() -> None:
+    with open(resources_dir / 'lookup_stopsByCharacter.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    assert extract_stops_by_character(data) == [
+        Stop(id='8059230041856278824', name='Dworcowa', number='623'),
+        Stop(id='8059230041856278737', name='Dworzec Główny', number='131'),
+        Stop(id='8059230041856278850', name='Dworzec Główny Tunel', number='1173'),
+        Stop(id='8059230041856278863', name='Dworzec Główny Zachód', number='2608'),
+        Stop(id='8059230041856278952', name='Dworzec Płaszów Estakada', number='2870'),
+        Stop(id='8059230041856278714', name='Dworzec Towarowy', number='70'),
     ]
 
 
