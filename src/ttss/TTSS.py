@@ -209,7 +209,3 @@ class TTSS:
         response = requests.post(url, params)
         response.raise_for_status()
         return extract_vehicles(response.json())
-
-    def get_language(self) -> None:
-        # url = f'{self.base_url}/internetservice/messages/language'
-        raise NotImplementedError()
