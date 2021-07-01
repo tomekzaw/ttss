@@ -111,7 +111,8 @@ def extract_trip_passage(data: dict, /, *, trip: Trip, old: bool) -> Passage:
 
     return Passage(stop=stop,
                    seq_num=int(data['stop_seq_num']),
-                   actual_time=parse_time(data['actualTime']),
+                   planned_time=parse_time(data['plannedTime']) if 'plannedTime' in data else None,
+                   actual_time=parse_time(data['actualTime']) if 'actualTime' in data else None,
                    status=Status(data['status']),
                    trip=trip,
                    route=trip.route,

@@ -1,0 +1,138 @@
+{
+  "actual": [
+    {
+      "plannedTime": "13:30",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856279380",
+        "name": "Teatr Słowackiego",
+        "shortName": "3242"
+      },
+      "stop_seq_num": "9"
+    },
+    {
+      "plannedTime": "13:32",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278732",
+        "name": "Lubicz",
+        "shortName": "126"
+      },
+      "stop_seq_num": "10"
+    },
+    {
+      "plannedTime": "13:34",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278731",
+        "name": "Rondo Mogilskie",
+        "shortName": "125"
+      },
+      "stop_seq_num": "11"
+    },
+    {
+      "plannedTime": "13:37",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278758",
+        "name": "Rondo Grzegórzeckie",
+        "shortName": "365"
+      },
+      "stop_seq_num": "12"
+    },
+    {
+      "plannedTime": "13:38",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278849",
+        "name": "Zabłocie",
+        "shortName": "1154"
+      },
+      "stop_seq_num": "13"
+    },
+    {
+      "plannedTime": "13:39",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278844",
+        "name": "Klimeckiego",
+        "shortName": "946"
+      },
+      "stop_seq_num": "14"
+    },
+    {
+      "plannedTime": "13:41",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278805",
+        "name": "Kuklińskiego",
+        "shortName": "567"
+      },
+      "stop_seq_num": "15"
+    },
+    {
+      "plannedTime": "13:42",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278803",
+        "name": "Gromadzka",
+        "shortName": "560"
+      },
+      "stop_seq_num": "16"
+    },
+    {
+      "plannedTime": "13:44",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278804",
+        "name": "Lipska",
+        "shortName": "561"
+      },
+      "stop_seq_num": "17"
+    },
+    {
+      "plannedTime": "13:45",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278851",
+        "name": "Rzebika",
+        "shortName": "1262"
+      },
+      "stop_seq_num": "18"
+    },
+    {
+      "plannedTime": "13:47",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856279480",
+        "name": "Mały Płaszów P+R",
+        "shortName": "3310"
+      },
+      "stop_seq_num": "19"
+    }
+  ],
+  "directionText": "Mały Płaszów P+R",
+  "old": [
+    {
+      "plannedTime": "13:26",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856278719",
+        "name": "Teatr Bagatela",
+        "shortName": "77"
+      },
+      "stop_seq_num": "7"
+    },
+    {
+      "plannedTime": "13:28",
+      "status": "PLANNED",
+      "stop": {
+        "id": "8059230041856279096",
+        "name": "Stary Kleparz",
+        "shortName": "3032"
+      },
+      "stop_seq_num": "8"
+    }
+  ],
+  "routeName": "20"
+}
