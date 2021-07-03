@@ -1,7 +1,8 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, tzinfo
 from typing import Tuple, List, Optional, Union
 
+import pytz
 import requests
 
 from ttss.ColorType import ColorType
@@ -25,6 +26,7 @@ from ttss.utils import timestamp_ms
 class TTSS:
     base_url: str
     language: str = 'pl'
+    tz: tzinfo = pytz.timezone('Europe/Warsaw')
 
     def autocomplete_stops(self, query: str) -> List[Stop]:
         url = f'{self.base_url}/internetservice/services/lookup/autocomplete'
@@ -121,7 +123,7 @@ class TTSS:
                           direction: Optional[str] = None,
                           mode: Mode = Mode.DEPARTURES,
                           timeframe: int = 120) -> Tuple[Stop, List[Route], List[Passage]]:
-        now = datetime.now().replace(microsecond=0)
+        now = datetime.now(self.tz).replace(microsecond=0)
         url = f'{self.base_url}/internetservice/services/passageInfo/stopPassages/stop'
         params = {
             'language': self.language,
@@ -143,7 +145,7 @@ class TTSS:
                                 direction: Optional[str] = None,
                                 mode: Mode = Mode.DEPARTURES,
                                 timeframe: int = 120) -> Tuple[Stop, List[Route], List[Passage]]:
-        now = datetime.now().replace(microsecond=0)
+        now = datetime.now(self.tz).replace(microsecond=0)
         url = f'{self.base_url}/internetservice/services/passageInfo/stopPassages/stopPoint'
         params = {
             'language': self.language,
