@@ -120,7 +120,7 @@ class TTSS:
                           route_id: Optional[str] = None,
                           direction: Optional[str] = None,
                           mode: Mode = Mode.DEPARTURES,
-                          timeframe: int = 120) -> Tuple[Stop, List[Passage]]:
+                          timeframe: int = 120) -> Tuple[Stop, List[Route], List[Passage]]:
         now = datetime.now().replace(microsecond=0)
         url = f'{self.base_url}/internetservice/services/passageInfo/stopPassages/stop'
         params = {
@@ -142,7 +142,7 @@ class TTSS:
                                 route_id: Optional[str] = None,
                                 direction: Optional[str] = None,
                                 mode: Mode = Mode.DEPARTURES,
-                                timeframe: int = 120) -> Tuple[Stop, List[Passage]]:
+                                timeframe: int = 120) -> Tuple[Stop, List[Route], List[Passage]]:
         now = datetime.now().replace(microsecond=0)
         url = f'{self.base_url}/internetservice/services/passageInfo/stopPassages/stopPoint'
         params = {

@@ -81,11 +81,15 @@ def extract_stop_point(data: dict, /) -> StopPoint:
     return StopPoint(id=data['id'], name=data['passengerName'], code=data['stopPointCode'])
 
 
-def extract_stop_passages(data: dict, /, *, now: datetime) -> Tuple[Stop, List[Passage]]:
+def extract_stop_passages(data: dict, /, *, now: datetime) -> Tuple[Stop, List[Route], List[Passage]]:
     stop = Stop(name=data['stopName'])
+
+    routes = [extract_route(route) for route in data['routes']]
+
     passages = extract_stop_passages_list(data['old'], stop=stop, now=now, old=True) + \
                extract_stop_passages_list(data['actual'], stop=stop, now=now, old=False)  # noqa
-    return stop, passages
+
+    return stop, routes, passages
 
 
 def extract_stop_passages_list(passages: List[Dict[str, Any]], /, *,
@@ -114,7 +118,7 @@ def extract_stop_passage(passage: Dict[str, Any], /, *, stop: Stop, now: datetim
                    old=old)
 
 
-def extract_stop_point_passages(data: dict, /, *, now: datetime) -> Tuple[Stop, List[Passage]]:
+def extract_stop_point_passages(data: dict, /, *, now: datetime) -> Tuple[Stop, List[Route], List[Passage]]:
     return extract_stop_passages(data, now=now)
 
 
@@ -161,6 +165,7 @@ def extract_route_stops(data: dict, /) -> Tuple[Route, List[Stop]]:
 def extract_route(data: dict, /) -> Route:
     return Route(id=data['id'],
                  name=data['name'],
+                 type=data.get('routeType', None),
                  authority=data['authority'],
                  directions=data.get('directions', []),
                  alerts=data['alerts'])

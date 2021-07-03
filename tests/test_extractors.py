@@ -156,10 +156,26 @@ def test_extract_stop_passages() -> None:
 
     now = datetime(2021, 6, 28, 21, 33, 19)
 
-    stop, passages = extract_stop_passages(data, now=now)
+    stop, routes, passages = extract_stop_passages(data, now=now)
 
     expected_stop = Stop(name='Teatr Słowackiego')
     assert stop == expected_stop
+
+    assert len(routes) == 8
+
+    assert routes[0] == Route(id='8059228650286875578',
+                              name='2',
+                              type='tram',
+                              authority='MPK',
+                              directions=['Cmentarz Rakowicki', 'Salwator'],
+                              alerts=[])
+
+    assert routes[1] == Route(id='8059228650286874679',
+                              name='3',
+                              type='tram',
+                              authority='MPK',
+                              directions=['Krowodrza Górka', 'Nowy Bieżanów P+R'],
+                              alerts=[])
 
     assert len(passages) == 65
 
@@ -225,10 +241,26 @@ def test_extract_stop_point_passages() -> None:
 
     now = datetime(2021, 6, 28, 21, 33, 19)
 
-    stop, passages = extract_stop_passages(data, now=now)
+    stop, routes, passages = extract_stop_passages(data, now=now)
 
     expected_stop = Stop(name='Teatr Słowackiego')
     assert stop == expected_stop
+
+    assert len(routes) == 4
+
+    assert routes[0] == Route(id='8059228650286874679',
+                              name='3',
+                              type='tram',
+                              authority='MPK',
+                              directions=['Krowodrza Górka', 'Nowy Bieżanów P+R'],
+                              alerts=[])
+
+    assert routes[1] == Route(id='8059228650286875580',
+                              name='10',
+                              type='tram',
+                              authority='MPK',
+                              directions=['Pleszów', 'Łagiewniki'],
+                              alerts=[])
 
     assert len(passages) == 16
 

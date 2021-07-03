@@ -47,8 +47,9 @@ if __name__ == '__main__':
 
     assert ttss.get_stop_point(stop_point_code='999999') is None
 
-    stop, passages = ttss.get_stop_passages(stop_number=stop_number)
+    stop, routes, passages = ttss.get_stop_passages(stop_number=stop_number)
     pprint(stop)
+    pprint(routes)
     pprint(passages)
     passage = next(passage for passage in passages if passage.vehicle is not None)
     vehicle_id = passage.vehicle.id
@@ -56,32 +57,39 @@ if __name__ == '__main__':
     route_id = passage.trip.route.id
     direction = passage.trip.direction
 
-    stop, passages = ttss.get_stop_passages(stop_number=stop_number, route_id=route_id)
+    stop, routes, passages = ttss.get_stop_passages(stop_number=stop_number, route_id=route_id)
     pprint(stop)
+    pprint(routes)
     pprint(passages)
 
-    stop, passages = ttss.get_stop_passages(stop_number=stop_number, direction=direction)
+    stop, routes, passages = ttss.get_stop_passages(stop_number=stop_number, direction=direction)
     pprint(stop)
+    pprint(routes)
     pprint(passages)
 
-    stop, passages = ttss.get_stop_passages(stop_number=stop_number, route_id=route_id, direction=direction)
+    stop, routes, passages = ttss.get_stop_passages(stop_number=stop_number, route_id=route_id, direction=direction)
     pprint(stop)
+    pprint(routes)
     pprint(passages)
 
-    stop, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code)
+    stop, routes, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code)
     pprint(stop)
+    pprint(routes)
     pprint(passages)
 
-    stop, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code, route_id=route_id)
+    stop, routes, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code, route_id=route_id)
     pprint(stop)
+    pprint(routes)
     pprint(passages)
 
-    stop, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code, direction=direction)
+    stop, routes, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code, direction=direction)
     pprint(stop)
+    pprint(routes)
     pprint(passages)
 
-    stop, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code, route_id=route_id, direction=direction)
+    stop, routes, passages = ttss.get_stop_point_passages(stop_point_code=stop_point_code, route_id=route_id, direction=direction)
     pprint(stop)
+    pprint(routes)
     pprint(passages)
 
     trip, passages = ttss.get_trip_passages(trip_id=trip_id)
