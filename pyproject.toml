@@ -2,6 +2,7 @@
 requires = [
     "setuptools>=42",
     "wheel",
-    "requests"
+    "requests",
+    "pytz"
 ]
 build-backend = "setuptools.build_meta"
