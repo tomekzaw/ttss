@@ -219,8 +219,8 @@ class TTSS:
         url = f'{self.base_url}/internetservice/geoserviceDispatcher/services/vehicleinfo/vehicles'
         params = {
             'lastUpdate': last_update,
-            'positionType': position_type,
-            'colorType': color_type,
+            'positionType': position_type.value,
+            'colorType': color_type.value,
         }
         response = requests.post(url, params)
         response.raise_for_status()
