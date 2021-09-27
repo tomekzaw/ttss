@@ -2,6 +2,9 @@
 
 A simple Python wrapper for TTSS (Traffic Tram Supervision System) API.
 
+![](https://github.com/tomekzaw/ttss/actions/workflows/lint.yml/badge.svg)
+![](https://github.com/tomekzaw/ttss/actions/workflows/test.yml/badge.svg)
+
 ## Requirements
 * Python 3.8+
 
