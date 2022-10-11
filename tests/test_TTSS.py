@@ -1,21 +1,30 @@
-import json
 from datetime import datetime, time
 from pathlib import Path
 
-from ttss import Passage, Route, Status, Stop, StopPoint, Trip, Vehicle
-from ttss.extractors import extract_autocomplete_stops, extract_autocomplete_stops_json, extract_stops, \
-    extract_stop_points, extract_stop, extract_stop_point, extract_stop_passages, extract_trip_passages, \
-    extract_routes, extract_route_stops, extract_route_paths, extract_vehicle_paths, extract_vehicles, \
-    extract_stops_by_character, extract_lookup_fulltext
+import pytest
+import pytz
+from requests_mock.mocker import Mocker
+
+from ttss import Passage, Route, Status, Stop, StopPoint, Trip, TTSS, Vehicle
+
+base_url = 'http://www.ttss.krakow.pl'
+
+tz = pytz.timezone('Europe/Warsaw')
 
 resources_dir = Path(__file__).parent / 'resources'
 
 
-def test_extract_autocomplete_stops() -> None:
+@pytest.fixture
+def ttss() -> TTSS:
+    return TTSS(base_url=base_url)
+
+
+def test_autocomplete_stops(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_autocomplete.html', 'r', encoding='utf-8') as f:
         data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/lookup/autocomplete', text=data)
 
-    assert extract_autocomplete_stops(data) == [
+    assert ttss.autocomplete_stops(query='dwor') == [
         Stop(name='Dworcowa', number='623'),
         Stop(name='Dworzec Główny', number='131'),
         Stop(name='Dworzec Główny Tunel', number='1173'),
@@ -25,11 +34,12 @@ def test_extract_autocomplete_stops() -> None:
     ]
 
 
-def test_extract_autocomplete_stops_json() -> None:
+def test_autocomplete_stops_json(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_autocomplete_json.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/lookup/autocomplete/json', text=data)
 
-    assert extract_autocomplete_stops_json(data) == [
+    assert ttss.autocomplete_stops_json(query='dwor') == [
         Stop(name='Dworcowa', number='623'),
         Stop(name='Dworzec Główny', number='131'),
         Stop(name='Dworzec Główny Tunel', number='1173'),
@@ -39,11 +49,12 @@ def test_extract_autocomplete_stops_json() -> None:
     ]
 
 
-def test_extract_lookup_fulltext_stops() -> None:
+def test_lookup_fulltext_stops(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_fulltext_stops.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/lookup/fulltext', text=data)
 
-    assert extract_lookup_fulltext(data) == [
+    assert ttss.lookup_fulltext(search='dwor') == [
         Stop(name='Dworcowa', number='623'),
         Stop(name='Dworzec Główny', number='131'),
         Stop(name='Dworzec Główny Tunel', number='1173'),
@@ -53,22 +64,24 @@ def test_extract_lookup_fulltext_stops() -> None:
     ]
 
 
-def test_extract_lookup_fulltext_stop_points() -> None:
+def test_lookup_fulltext_stop_points(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_fulltext_stopPoints.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/lookup/fulltext', text=data)
 
-    assert extract_lookup_fulltext(data) == [
+    assert ttss.lookup_fulltext(search='dwor') == [
         StopPoint(name='Dworcowa (62319)', code='62319'),
         StopPoint(name='Dworcowa (62329)', code='62329'),
         StopPoint(name='Dworcowa (62339)', code='62339'),
     ]
 
 
-def test_extract_stops_by_character() -> None:
+def test_get_stops_by_character(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_stopsByCharacter.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/lookup/stopsByCharacter', text=data)
 
-    assert extract_stops_by_character(data) == [
+    assert ttss.get_stops_by_character(character='D') == [
         Stop(id='8059230041856278824', name='Dworcowa', number='623'),
         Stop(id='8059230041856278737', name='Dworzec Główny', number='131'),
         Stop(id='8059230041856278850', name='Dworzec Główny Tunel', number='1173'),
@@ -78,11 +91,12 @@ def test_extract_stops_by_character() -> None:
     ]
 
 
-def test_extract_stops() -> None:
+def test_get_stops(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_stopinfo_stops.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/stopinfo/stops', text=data)
 
-    stops = extract_stops(data)
+    stops = ttss.get_stops()
 
     assert len(stops) == 4
 
@@ -101,11 +115,12 @@ def test_extract_stops() -> None:
                             longitude=19.945360833333332)
 
 
-def test_extract_stop_points() -> None:
+def test_get_stop_points(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_stopinfo_stopPoints.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/stopinfo/stopPoints', text=data)
 
-    stop_points = extract_stop_points(data)
+    stop_points = ttss.get_stop_points()
 
     assert len(stop_points) == 12
 
@@ -126,31 +141,33 @@ def test_extract_stop_points() -> None:
                                        longitude=19.945408055555557)
 
 
-def test_extract_stop() -> None:
+def test_get_stop(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'stopInfo_stop.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/stopInfo/stop', text=data)
 
-    stop = extract_stop(data)
+    stop = ttss.get_stop(stop_number='3242')
 
     assert stop == Stop(id='8059230041856279380', name='Teatr Słowackiego')
 
 
-def test_extract_stop_point() -> None:
+def test_get_stop_point(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'stopInfo_stopPoint.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/stopInfo/stopPoint', text=data)
 
-    stop_point = extract_stop_point(data)
+    stop_point = ttss.get_stop_point(stop_point_code='324239')
 
     assert stop_point == StopPoint(id='8059229492100788879', name='Teatr Słowackiego (324239)', code='324239')
 
 
-def test_extract_stop_passages() -> None:
+@pytest.mark.freeze_time(datetime(2021, 6, 28, 21, 33, 19).replace(tzinfo=tz))
+def test_get_stop_passages(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'passageInfo_stopPassages_stop.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/passageInfo/stopPassages/stop', text=data)
 
-    now = datetime(2021, 6, 28, 21, 33, 19)
-
-    stop, routes, passages = extract_stop_passages(data, now=now)
+    stop, routes, passages = ttss.get_stop_passages(stop_number='3242')
 
     expected_stop = Stop(name='Teatr Słowackiego')
     assert stop == expected_stop
@@ -181,7 +198,7 @@ def test_extract_stop_passages() -> None:
                                   status=Status.DEPARTED,
                                   planned_time=time(21, 30),
                                   actual_time=None,
-                                  dt=datetime(2021, 6, 28, 21, 30),
+                                  dt=datetime(2021, 6, 28, 21, 30).replace(tzinfo=tz),
                                   stop=expected_stop,
                                   trip=expected_trip,
                                   route=expected_route,
@@ -195,7 +212,7 @@ def test_extract_stop_passages() -> None:
                                   status=Status.STOPPING,
                                   planned_time=time(21, 32),
                                   actual_time=time(21, 33),
-                                  dt=datetime(2021, 6, 28, 21, 33),
+                                  dt=datetime(2021, 6, 28, 21, 33).replace(tzinfo=tz),
                                   stop=expected_stop,
                                   trip=expected_trip,
                                   route=expected_route,
@@ -208,7 +225,7 @@ def test_extract_stop_passages() -> None:
                                   status=Status.PLANNED,
                                   planned_time=time(21, 34),
                                   actual_time=None,
-                                  dt=datetime(2021, 6, 28, 21, 34),
+                                  dt=datetime(2021, 6, 28, 21, 34).replace(tzinfo=tz),
                                   stop=expected_stop,
                                   trip=expected_trip,
                                   route=expected_route,
@@ -222,20 +239,20 @@ def test_extract_stop_passages() -> None:
                                   status=Status.PREDICTED,
                                   planned_time=time(21, 36),
                                   actual_time=time(21, 36),
-                                  dt=datetime(2021, 6, 28, 21, 36),
+                                  dt=datetime(2021, 6, 28, 21, 36).replace(tzinfo=tz),
                                   stop=expected_stop,
                                   trip=expected_trip,
                                   route=expected_route,
                                   vehicle=expected_vehicle)
 
 
-def test_extract_stop_point_passages() -> None:
+@pytest.mark.freeze_time(datetime(2021, 6, 28, 21, 33, 19).replace(tzinfo=tz))
+def test_get_stop_point_passages(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'passageInfo_stopPassages_stopPoint.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/passageInfo/stopPassages/stopPoint', text=data)
 
-    now = datetime(2021, 6, 28, 21, 33, 19)
-
-    stop, routes, passages = extract_stop_passages(data, now=now)
+    stop, routes, passages = ttss.get_stop_point_passages(stop_point_code='324239')
 
     expected_stop = Stop(name='Teatr Słowackiego')
     assert stop == expected_stop
@@ -266,7 +283,7 @@ def test_extract_stop_point_passages() -> None:
                                   status=Status.DEPARTED,
                                   planned_time=time(21, 30),
                                   actual_time=None,
-                                  dt=datetime(2021, 6, 28, 21, 30),
+                                  dt=datetime(2021, 6, 28, 21, 30).replace(tzinfo=tz),
                                   stop=expected_stop,
                                   trip=expected_trip,
                                   route=expected_route,
@@ -279,7 +296,7 @@ def test_extract_stop_point_passages() -> None:
                                   status=Status.PLANNED,
                                   planned_time=time(21, 39),
                                   actual_time=None,
-                                  dt=datetime(2021, 6, 28, 21, 39),
+                                  dt=datetime(2021, 6, 28, 21, 39).replace(tzinfo=tz),
                                   stop=expected_stop,
                                   trip=expected_trip,
                                   route=expected_route,
@@ -293,18 +310,19 @@ def test_extract_stop_point_passages() -> None:
                                   status=Status.PREDICTED,
                                   planned_time=time(21, 43),
                                   actual_time=time(21, 43),
-                                  dt=datetime(2021, 6, 28, 21, 43),
+                                  dt=datetime(2021, 6, 28, 21, 43).replace(tzinfo=tz),
                                   stop=expected_stop,
                                   trip=expected_trip,
                                   route=expected_route,
                                   vehicle=expected_vehicle)
 
 
-def test_extract_trip_passages_actual() -> None:
+def test_get_trip_passages_actual(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'tripInfo_tripPassages_actual.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/tripInfo/tripPassages', text=data)
 
-    trip, passages = extract_trip_passages(data)
+    trip, passages = ttss.get_trip_passages(trip_id='trip_id')  # TODO: real id
 
     expected_route = Route(name='24')
     expected_trip = Trip(route=expected_route, direction='Bronowice Małe')
@@ -329,11 +347,12 @@ def test_extract_trip_passages_actual() -> None:
                                   route=expected_route)
 
 
-def test_extract_trip_passages_planned() -> None:
+def test_get_trip_passages_planned(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'tripInfo_tripPassages_planned.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/tripInfo/tripPassages', text=data)
 
-    trip, passages = extract_trip_passages(data)
+    trip, passages = ttss.get_trip_passages(trip_id='trip_id')  # TODO: real id
 
     expected_route = Route(name='20')
     expected_trip = Trip(route=expected_route, direction='Mały Płaszów P+R')
@@ -358,11 +377,12 @@ def test_extract_trip_passages_planned() -> None:
                                   route=expected_route)
 
 
-def test_extract_routes() -> None:
+def test_get_routes(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'routeInfo_route.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/routeInfo/route', text=data)
 
-    routes = extract_routes(data)
+    routes = ttss.get_routes()
 
     assert len(routes) == 25
 
@@ -373,11 +393,12 @@ def test_extract_routes() -> None:
                               alerts=[])
 
 
-def test_extract_route_stops() -> None:
+def test_get_route_stops(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'routeInfo_routeStops.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/services/routeInfo/routeStops', text=data)
 
-    route, stops = extract_route_stops(data)
+    route, stops = ttss.get_route_stops(route_id='route_id')  # TODO: real id
 
     assert route == Route(id='8059228650286874655',
                           name='1',
@@ -392,11 +413,12 @@ def test_extract_route_stops() -> None:
                             number='867')
 
 
-def test_extract_route_paths() -> None:
+def test_get_route_paths(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_pathinfo_route.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/pathinfo/route', text=data)
 
-    paths = extract_route_paths(data)
+    paths = ttss.get_route_paths(route_id='route_id')  # TODO: real id
 
     assert len(paths) == 2
 
@@ -411,11 +433,12 @@ def test_extract_route_paths() -> None:
     assert paths[1].waypoints[560] == (50.09481611111111, 20.065258888888888)
 
 
-def test_extract_vehicle_paths() -> None:
+def test_get_vehicle_paths(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_pathinfo_vehicle.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/pathinfo/vehicle', text=data)
 
-    paths = extract_vehicle_paths(data)
+    paths = ttss.get_vehicle_paths(vehicle_id='vehicle_id')  # TODO: real id
 
     assert len(paths) == 1
 
@@ -426,11 +449,12 @@ def test_extract_vehicle_paths() -> None:
     assert paths[0].waypoints[433] == (50.08179694444444, 19.88190888888889)
 
 
-def test_extract_vehicles() -> None:
+def test_get_vehicles(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_vehicleinfo_vehicles.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
+        data = f.read()
+    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/vehicleinfo/vehicles', text=data)
 
-    vehicles = extract_vehicles(data)
+    vehicles = ttss.get_vehicles()
 
     assert len(vehicles) == 754
 
