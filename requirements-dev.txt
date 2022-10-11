@@ -3,6 +3,7 @@ flake8
 mypy
 pytest
 pytest-freezegun
+requests-mock
 twine
 types-pytz
 types-requests
