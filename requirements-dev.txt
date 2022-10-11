@@ -2,6 +2,7 @@ build
 flake8
 mypy
 pytest
+pytest-freezegun
 twine
 types-pytz
 types-requests
