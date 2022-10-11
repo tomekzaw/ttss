@@ -202,7 +202,11 @@ def extract_vehicle(data: dict, /) -> Vehicle:
     longitude = data['longitude'] / 3_600_000 if 'longitude' in data else None
 
     if 'name' in data:
-        route_number, direction = data['name'].split(' ', 1)
+        name = data['name']
+        if ' ' in name:
+            route_number, direction = name.split(' ', 1)
+        else:
+            route_number, direction = name, None
     else:
         route_number = direction = None
 
