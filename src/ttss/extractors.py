@@ -11,7 +11,7 @@ from ttss.Stop import Stop
 from ttss.StopPoint import StopPoint
 from ttss.Trip import Trip
 from ttss.Vehicle import Vehicle
-from ttss.utils import parse_time
+from ttss.utils import parse_time, round_seconds
 
 
 def extract_autocomplete_stops(html_text: str, /) -> List[Stop]:
@@ -113,7 +113,7 @@ def extract_stop_passage(passage: Dict[str, Any], /, *, stop: Stop, now: datetim
                    vehicle=vehicle,
                    planned_time=parse_time(passage['plannedTime']),
                    actual_time=parse_time(passage['actualTime']) if 'actualTime' in passage else None,
-                   dt=now + timedelta(seconds=passage['actualRelativeTime']),
+                   dt=round_seconds(now + timedelta(seconds=passage['actualRelativeTime'])),
                    status=Status(passage['status']),
                    old=old)
 
