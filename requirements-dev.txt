@@ -1,3 +1,7 @@
-pytest
 build
+flake8
+mypy
+pytest
 twine
+types-pytz
+types-requests
