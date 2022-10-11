@@ -29,6 +29,7 @@ if __name__ == '__main__':
     stops = ttss.get_stops(min_latitude=50.06, min_longitude=19.94, max_latitude=50.07, max_longitude=19.95)
     pprint(stops)
     stop_number = stops[0].number
+    assert stop_number is not None
 
     stop_points = ttss.get_stop_points()
     pprint(stop_points)
@@ -36,6 +37,7 @@ if __name__ == '__main__':
     stop_points = ttss.get_stop_points(min_latitude=50.06, min_longitude=19.94, max_latitude=50.07, max_longitude=19.95)
     pprint(stop_points)
     stop_point_code = stop_points[0].code
+    assert stop_point_code is not None
 
     stop = ttss.get_stop(stop_number=stop_number)
     pprint(stop)
@@ -52,6 +54,13 @@ if __name__ == '__main__':
     pprint(routes)
     pprint(passages)
     passage = next(passage for passage in passages if passage.vehicle is not None)
+    assert passage is not None
+    assert passage.vehicle is not None
+    assert passage.vehicle.id is not None
+    assert passage.trip is not None
+    assert passage.trip.id is not None
+    assert passage.trip.route is not None
+
     vehicle_id = passage.vehicle.id
     trip_id = passage.trip.id
     route_id = passage.trip.route.id
@@ -104,7 +113,10 @@ if __name__ == '__main__':
     pprint(routes)
     route = routes[0]
     route_id = route.id
-    direction = route.directions[0]
+    directions = route.directions
+    assert route_id is not None
+    assert directions is not None
+    direction = directions[0]
 
     route, stops = ttss.get_route_stops(route_id=route_id)
     pprint(route)
