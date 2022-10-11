@@ -16,6 +16,8 @@ pip install ttss
 
 For MPK Kraków trams:
 ```py
+from ttss import TTSS
+
 ttss = TTSS(base_url='http://www.ttss.krakow.pl')
 ```
 

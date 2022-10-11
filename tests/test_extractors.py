@@ -2,13 +2,7 @@ import json
 from datetime import datetime, time
 from pathlib import Path
 
-from ttss.Passage import Passage
-from ttss.Route import Route
-from ttss.Status import Status
-from ttss.Stop import Stop
-from ttss.StopPoint import StopPoint
-from ttss.Trip import Trip
-from ttss.Vehicle import Vehicle
+from ttss import Passage, Route, Status, Stop, StopPoint, Trip, Vehicle
 from ttss.extractors import extract_autocomplete_stops, extract_autocomplete_stops_json, extract_stops, \
     extract_stop_points, extract_stop, extract_stop_point, extract_stop_passages, extract_trip_passages, \
     extract_routes, extract_route_stops, extract_route_paths, extract_vehicle_paths, extract_vehicles, \

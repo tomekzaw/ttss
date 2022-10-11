@@ -1,6 +1,6 @@
 from pprint import pprint
 
-from ttss.TTSS import TTSS
+from ttss import TTSS
 
 if __name__ == '__main__':
     # base_url = 'http://www.ttss.krakow.pl'
