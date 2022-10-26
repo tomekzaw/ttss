@@ -34,7 +34,7 @@ class TTSS:
             'query': query,
             'language': self.language,
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_autocomplete_stops(response.text)
 
@@ -44,14 +44,14 @@ class TTSS:
             'query': query,
             'language': self.language,
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_autocomplete_stops_json(response.json())
 
     def lookup_fulltext(self, search: str) -> List[Union[Stop, StopPoint]]:
         url = f'{self.base_url}/internetservice/services/lookup/fulltext'
         params = {'search': search}
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_lookup_fulltext(response.json())
 
@@ -61,7 +61,7 @@ class TTSS:
             'character': character,
             'language': self.language,
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_stops_by_character(response.json())
 
@@ -75,7 +75,7 @@ class TTSS:
             'right': int(max_longitude * 3_600_000),
             'top': int(max_latitude * 3_600_000),
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_stops(response.json())
 
@@ -89,7 +89,7 @@ class TTSS:
             'right': int(max_longitude * 3_600_000),
             'top': int(max_latitude * 3_600_000),
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_stop_points(response.json())
 
@@ -99,7 +99,7 @@ class TTSS:
             'stop': stop_number,
             'language': self.language,
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         if response.status_code == 404:
             return None
         response.raise_for_status()
@@ -111,7 +111,7 @@ class TTSS:
             'stopPoint': stop_point_code,
             'language': self.language,
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         if response.status_code == 404:
             return None
         response.raise_for_status()
@@ -135,7 +135,7 @@ class TTSS:
             'timeFrame': timeframe,
             'cacheBuster': timestamp_ms(),
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_stop_passages(response.json(), now=now)
 
@@ -157,7 +157,7 @@ class TTSS:
             'timeFrame': timeframe,
             'cacheBuster': timestamp_ms(),
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_stop_point_passages(response.json(), now=now)
 
@@ -171,14 +171,14 @@ class TTSS:
             'vehicleId': vehicle_id,
             'cacheBuster': timestamp_ms(),
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_trip_passages(response.json())
 
     def get_routes(self) -> List[Route]:
         url = f'{self.base_url}/internetservice/services/routeInfo/route'
         params = {'language': self.language}
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_routes(response.json())
 
@@ -189,7 +189,7 @@ class TTSS:
             'language': self.language,
             'cacheBuster': timestamp_ms(),
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_route_stops(response.json())
 
@@ -199,7 +199,7 @@ class TTSS:
             'id': route_id,
             'direction': direction,
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         if response.status_code == 404:
             return []
         response.raise_for_status()
@@ -208,7 +208,7 @@ class TTSS:
     def get_vehicle_paths(self, vehicle_id: str) -> List[Path]:
         url = f'{self.base_url}/internetservice/geoserviceDispatcher/services/pathinfo/vehicle'
         params = {'id': vehicle_id}
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_vehicle_paths(response.json())
 
@@ -222,6 +222,6 @@ class TTSS:
             'positionType': position_type.value,
             'colorType': color_type.value,
         }
-        response = requests.post(url, params)
+        response = requests.get(url, params)
         response.raise_for_status()
         return extract_vehicles(response.json())
