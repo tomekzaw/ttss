@@ -11,7 +11,7 @@ def test_parse_time():
 
 @pytest.mark.freeze_time('2021-06-28 21:33:19')
 def test_timestamp_ms():
-    assert timestamp_ms() == 1624915999000
+    assert timestamp_ms() == '1624915999000'
 
 
 @pytest.mark.parametrize('dt, expected', [

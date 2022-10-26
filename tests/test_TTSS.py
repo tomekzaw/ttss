@@ -22,7 +22,7 @@ def ttss() -> TTSS:
 def test_autocomplete_stops(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_autocomplete.html', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/lookup/autocomplete', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/lookup/autocomplete', text=data)
 
     assert ttss.autocomplete_stops(query='dwor') == [
         Stop(name='Dworcowa', number='623'),
@@ -37,7 +37,7 @@ def test_autocomplete_stops(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_autocomplete_stops_json(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_autocomplete_json.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/lookup/autocomplete/json', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/lookup/autocomplete/json', text=data)
 
     assert ttss.autocomplete_stops_json(query='dwor') == [
         Stop(name='Dworcowa', number='623'),
@@ -52,7 +52,7 @@ def test_autocomplete_stops_json(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_lookup_fulltext_stops(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_fulltext_stops.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/lookup/fulltext', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/lookup/fulltext', text=data)
 
     assert ttss.lookup_fulltext(search='dwor') == [
         Stop(name='Dworcowa', number='623'),
@@ -67,7 +67,7 @@ def test_lookup_fulltext_stops(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_lookup_fulltext_stop_points(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_fulltext_stopPoints.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/lookup/fulltext', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/lookup/fulltext', text=data)
 
     assert ttss.lookup_fulltext(search='dwor') == [
         StopPoint(name='Dworcowa (62319)', code='62319'),
@@ -79,7 +79,7 @@ def test_lookup_fulltext_stop_points(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_stops_by_character(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'lookup_stopsByCharacter.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/lookup/stopsByCharacter', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/lookup/stopsByCharacter', text=data)
 
     assert ttss.get_stops_by_character(character='D') == [
         Stop(id='8059230041856278824', name='Dworcowa', number='623'),
@@ -94,7 +94,7 @@ def test_get_stops_by_character(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_stops(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_stopinfo_stops.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/stopinfo/stops', text=data)
+    requests_mock.get(f'{base_url}/internetservice/geoserviceDispatcher/services/stopinfo/stops', text=data)
 
     stops = ttss.get_stops()
 
@@ -118,7 +118,7 @@ def test_get_stops(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_stop_points(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_stopinfo_stopPoints.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/stopinfo/stopPoints', text=data)
+    requests_mock.get(f'{base_url}/internetservice/geoserviceDispatcher/services/stopinfo/stopPoints', text=data)
 
     stop_points = ttss.get_stop_points()
 
@@ -144,7 +144,7 @@ def test_get_stop_points(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_stop(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'stopInfo_stop.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/stopInfo/stop', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/stopInfo/stop', text=data)
 
     stop = ttss.get_stop(stop_number='3242')
 
@@ -154,7 +154,7 @@ def test_get_stop(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_stop_point(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'stopInfo_stopPoint.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/stopInfo/stopPoint', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/stopInfo/stopPoint', text=data)
 
     stop_point = ttss.get_stop_point(stop_point_code='324239')
 
@@ -165,7 +165,7 @@ def test_get_stop_point(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_stop_passages(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'passageInfo_stopPassages_stop.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/passageInfo/stopPassages/stop', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/passageInfo/stopPassages/stop', text=data)
 
     stop, routes, passages = ttss.get_stop_passages(stop_number='3242')
 
@@ -250,7 +250,7 @@ def test_get_stop_passages(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_stop_point_passages(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'passageInfo_stopPassages_stopPoint.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/passageInfo/stopPassages/stopPoint', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/passageInfo/stopPassages/stopPoint', text=data)
 
     stop, routes, passages = ttss.get_stop_point_passages(stop_point_code='324239')
 
@@ -320,7 +320,7 @@ def test_get_stop_point_passages(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_trip_passages_actual(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'tripInfo_tripPassages_actual.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/tripInfo/tripPassages', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/tripInfo/tripPassages', text=data)
 
     trip, passages = ttss.get_trip_passages(trip_id='trip_id')  # TODO: real id
 
@@ -350,7 +350,7 @@ def test_get_trip_passages_actual(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_trip_passages_planned(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'tripInfo_tripPassages_planned.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/tripInfo/tripPassages', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/tripInfo/tripPassages', text=data)
 
     trip, passages = ttss.get_trip_passages(trip_id='trip_id')  # TODO: real id
 
@@ -380,7 +380,7 @@ def test_get_trip_passages_planned(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_routes(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'routeInfo_route.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/routeInfo/route', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/routeInfo/route', text=data)
 
     routes = ttss.get_routes()
 
@@ -396,7 +396,7 @@ def test_get_routes(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_route_stops(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'routeInfo_routeStops.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/services/routeInfo/routeStops', text=data)
+    requests_mock.get(f'{base_url}/internetservice/services/routeInfo/routeStops', text=data)
 
     route, stops = ttss.get_route_stops(route_id='route_id')  # TODO: real id
 
@@ -416,7 +416,7 @@ def test_get_route_stops(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_route_paths(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_pathinfo_route.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/pathinfo/route', text=data)
+    requests_mock.get(f'{base_url}/internetservice/geoserviceDispatcher/services/pathinfo/route', text=data)
 
     paths = ttss.get_route_paths(route_id='route_id')  # TODO: real id
 
@@ -436,7 +436,7 @@ def test_get_route_paths(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_vehicle_paths(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_pathinfo_vehicle.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/pathinfo/vehicle', text=data)
+    requests_mock.get(f'{base_url}/internetservice/geoserviceDispatcher/services/pathinfo/vehicle', text=data)
 
     paths = ttss.get_vehicle_paths(vehicle_id='vehicle_id')  # TODO: real id
 
@@ -452,7 +452,7 @@ def test_get_vehicle_paths(ttss: TTSS, requests_mock: Mocker) -> None:
 def test_get_vehicles(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_vehicleinfo_vehicles.json', 'r', encoding='utf-8') as f:
         data = f.read()
-    requests_mock.post(f'{base_url}/internetservice/geoserviceDispatcher/services/vehicleinfo/vehicles', text=data)
+    requests_mock.get(f'{base_url}/internetservice/geoserviceDispatcher/services/vehicleinfo/vehicles', text=data)
 
     vehicles = ttss.get_vehicles()
 

@@ -6,8 +6,8 @@ def parse_time(string: str) -> time:
     return datetime.strptime(string, '%H:%M').time()
 
 
-def timestamp_ms() -> int:
-    return time_ns() // 1_000_000
+def timestamp_ms() -> str:
+    return str(time_ns() // 1_000_000)
 
 
 def round_seconds(dt: datetime) -> datetime:
