@@ -18,7 +18,7 @@ from ttss.Vehicle import Vehicle
 from ttss.extractors import extract_autocomplete_stops, extract_autocomplete_stops_json, extract_stops, \
     extract_stop_points, extract_stop, extract_stop_point, extract_stop_passages, extract_stop_point_passages, \
     extract_trip_passages, extract_routes, extract_route_stops, extract_route_paths, extract_vehicle_paths, \
-    extract_vehicles, extract_stops_by_character, extract_lookup_fulltext
+    extract_vehicles, extract_stops_by_character, extract_lookup_fulltext, extract_near_stops
 from ttss.utils import timestamp_ms
 
 
@@ -65,6 +65,16 @@ class TTSS:
         response = requests.get(url, params, **self.options)
         response.raise_for_status()
         return extract_stops_by_character(response.json())
+
+    def get_near_stops(self, latitude: float, longitude: float) -> List[Stop]:
+        url = f'{self.base_url}/internetservice/services/lookup/autocomplete/nearStops/json'
+        params = {
+            'lat': latitude,
+            'lon': longitude,
+        }
+        response = requests.get(url, params, **self.options)
+        response.raise_for_status()
+        return extract_near_stops(response.json())
 
     def get_stops(self, *,
                   min_latitude: float = -90.0, max_latitude: float = 90.0,

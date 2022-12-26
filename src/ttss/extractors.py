@@ -48,6 +48,14 @@ def extract_stops_by_character(data: dict, /) -> List[Stop]:
     ]
 
 
+def extract_near_stops(data: dict, /) -> List[Stop]:
+    return [
+        Stop(name=unescape(item['name']), number=item['id'])
+        for item in data
+        if item['type'] == 'stop'
+    ]
+
+
 def extract_stops(data: dict, /) -> List[Stop]:
     return [
         Stop(id=stop['id'],
