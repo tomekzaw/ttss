@@ -98,7 +98,7 @@ def extract_stop_passages_list(passages: List[Dict[str, Any]], /, *,
 
 
 def extract_stop_passage(passage: Dict[str, Any], /, *, stop: Stop, now: datetime, old: bool) -> Passage:
-    route = Route(id=passage['routeId'], name=passage['patternText'])
+    route = Route(id=passage['routeId'], name=passage['patternText'] if 'patternText' in passage else None)
 
     trip = Trip(id=passage['tripId'],
                 route=route,
