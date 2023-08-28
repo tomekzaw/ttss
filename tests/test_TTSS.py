@@ -91,6 +91,20 @@ def test_get_stops_by_character(ttss: TTSS, requests_mock: Mocker) -> None:
     ]
 
 
+def test_get_near_stops(ttss: TTSS, requests_mock: Mocker) -> None:
+    with open(resources_dir / 'lookup_autocomplete_nearStops_json.json', 'r', encoding='utf-8') as f:
+        data = f.read()
+    requests_mock.get(f'{base_url}/internetservice/services/lookup/autocomplete/nearStops/json', text=data)
+
+    near_stops = ttss.get_near_stops(latitude=50, longitude=20)
+
+    assert len(near_stops) == 20
+
+    assert near_stops[0] == Stop(name='Prokocim Szpital', number='682')
+    assert near_stops[1] == Stop(name='Teligi', number='681')
+    assert near_stops[7] == Stop(name='Nowy Bieżanów P+R', number='3175')
+
+
 def test_get_stops(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'geoserviceDispatcher_stopinfo_stops.json', 'r', encoding='utf-8') as f:
         data = f.read()
