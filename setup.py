@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as fh:
 
 setuptools.setup(
     name='ttss',
-    version='0.6.0',
+    version='0.7.0',
     author='Tomek Zawadzki',
     author_email='tomekzawadzki98@gmail.com',
     description='A Python wrapper for TTSS API.',
