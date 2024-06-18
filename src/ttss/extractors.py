@@ -174,7 +174,7 @@ def extract_route(data: dict, /) -> Route:
     return Route(id=data['id'],
                  name=data['name'],
                  type=data.get('routeType', None),
-                 authority=data['authority'],
+                 authority=data.get('authority', None),
                  directions=data.get('directions', []),
                  alerts=data['alerts'])
 
