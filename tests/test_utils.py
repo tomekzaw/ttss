@@ -5,12 +5,12 @@ import pytest
 from ttss.utils import parse_time, round_seconds, timestamp_ms
 
 
-def test_parse_time():
+def test_parse_time() -> None:
     assert parse_time('12:34') == time(12, 34)
 
 
 @pytest.mark.freeze_time('2021-06-28 21:33:19')
-def test_timestamp_ms():
+def test_timestamp_ms() -> None:
     assert timestamp_ms() == '1624915999000'
 
 
@@ -23,5 +23,5 @@ def test_timestamp_ms():
     (datetime(2022, 10, 11, 12, 0, 30), datetime(2022, 10, 11, 12, 0, 0)),
     (datetime(2022, 10, 11, 12, 0, 31), datetime(2022, 10, 11, 12, 1, 0)),
 ])
-def test_round_seconds(dt: datetime, expected: datetime):
+def test_round_seconds(dt: datetime, expected: datetime) -> None:
     assert round_seconds(dt) == expected
