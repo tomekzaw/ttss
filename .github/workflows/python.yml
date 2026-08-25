@@ -32,10 +32,10 @@ jobs:
           if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
 
       - name: Lint with flake8
-        run: flake8 . --ignore E501 --exclude .venv
+        run: flake8 .
 
       - name: Check types with mypy
-        run: mypy . --strict
+        run: mypy .
 
       - name: Install Python package
         run: pip install .

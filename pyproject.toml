@@ -31,3 +31,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 ttss = ["py.typed"]
+
+[tool.mypy]
+strict = true
+exclude = '^build/'
