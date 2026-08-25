@@ -1,6 +1,7 @@
 from datetime import datetime, time
 
 import pytest
+from freezegun import freeze_time
 
 from ttss.utils import parse_time, round_seconds, timestamp_ms
 
@@ -9,7 +10,7 @@ def test_parse_time() -> None:
     assert parse_time('12:34') == time(12, 34)
 
 
-@pytest.mark.freeze_time('2021-06-28 21:33:19')
+@freeze_time('2021-06-28 21:33:19')
 def test_timestamp_ms() -> None:
     assert timestamp_ms() == '1624915999000'
 

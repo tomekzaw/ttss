@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 import pytz
+from freezegun import freeze_time
 from requests_mock.mocker import Mocker
 
 from ttss import Passage, Route, Status, Stop, StopPoint, Trip, TTSS, Vehicle
@@ -175,7 +176,7 @@ def test_get_stop_point(ttss: TTSS, requests_mock: Mocker) -> None:
     assert stop_point == StopPoint(id='8059229492100788879', name='Teatr Słowackiego (324239)', code='324239')
 
 
-@pytest.mark.freeze_time(datetime(2021, 6, 28, 21, 33, 19).replace(tzinfo=tz))
+@freeze_time(datetime(2021, 6, 28, 21, 33, 19).replace(tzinfo=tz))
 def test_get_stop_passages(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'passageInfo_stopPassages_stop.json', 'r', encoding='utf-8') as f:
         data = f.read()
@@ -260,7 +261,7 @@ def test_get_stop_passages(ttss: TTSS, requests_mock: Mocker) -> None:
                                   vehicle=expected_vehicle)
 
 
-@pytest.mark.freeze_time(datetime(2021, 6, 28, 21, 33, 19).replace(tzinfo=tz))
+@freeze_time(datetime(2021, 6, 28, 21, 33, 19).replace(tzinfo=tz))
 def test_get_stop_point_passages(ttss: TTSS, requests_mock: Mocker) -> None:
     with open(resources_dir / 'passageInfo_stopPassages_stopPoint.json', 'r', encoding='utf-8') as f:
         data = f.read()
