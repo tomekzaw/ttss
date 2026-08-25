@@ -5,5 +5,4 @@ mypy
 pytest
 requests-mock
 twine
-types-pytz
 types-requests

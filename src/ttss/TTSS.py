@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
 from datetime import datetime, tzinfo
 from typing import Any, Dict, List, Optional, Tuple, Union
+from zoneinfo import ZoneInfo
 
-import pytz
 import requests
 
 from ttss.ColorType import ColorType
@@ -26,7 +26,7 @@ from ttss.utils import timestamp_ms
 class TTSS:
     base_url: str
     language: str = 'pl'
-    tz: tzinfo = pytz.timezone('Europe/Warsaw')
+    tz: tzinfo = ZoneInfo('Europe/Warsaw')
     options: Dict[str, Any] = field(default_factory=dict)
 
     def autocomplete_stops(self, query: str) -> List[Stop]:
