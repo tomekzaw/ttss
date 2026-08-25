@@ -1,8 +1,8 @@
 build
 flake8
+freezegun
 mypy
 pytest
-pytest-freezegun
 requests-mock
 twine
 types-pytz
