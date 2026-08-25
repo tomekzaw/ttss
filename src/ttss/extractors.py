@@ -23,14 +23,14 @@ def extract_autocomplete_stops(html_text: str, /) -> List[Stop]:
     ]
 
 
-def extract_autocomplete_stops_json(data: dict, /) -> List[Stop]:
+def extract_autocomplete_stops_json(data: List[Dict[str, Any]], /) -> List[Stop]:
     return [
         Stop(number=stop['id'], name=unescape(stop['name']))
         for stop in data[1:]
     ]
 
 
-def extract_lookup_fulltext(data: dict, /) -> List[Union[Stop, StopPoint]]:
+def extract_lookup_fulltext(data: Dict[str, Any], /) -> List[Union[Stop, StopPoint]]:
     return [
         (
             Stop(number=result['stop'], name=result['stopPassengerName'])
@@ -41,14 +41,14 @@ def extract_lookup_fulltext(data: dict, /) -> List[Union[Stop, StopPoint]]:
     ]
 
 
-def extract_stops_by_character(data: dict, /) -> List[Stop]:
+def extract_stops_by_character(data: Dict[str, Any], /) -> List[Stop]:
     return [
         Stop(id=stop['id'], name=stop['name'], number=stop['number'])
         for stop in data['stops']
     ]
 
 
-def extract_near_stops(data: dict, /) -> List[Stop]:
+def extract_near_stops(data: List[Dict[str, Any]], /) -> List[Stop]:
     return [
         Stop(name=unescape(item['name']), number=item['id'])
         for item in data
@@ -56,7 +56,7 @@ def extract_near_stops(data: dict, /) -> List[Stop]:
     ]
 
 
-def extract_stops(data: dict, /) -> List[Stop]:
+def extract_stops(data: Dict[str, Any], /) -> List[Stop]:
     return [
         Stop(id=stop['id'],
              name=stop['name'],
@@ -68,7 +68,7 @@ def extract_stops(data: dict, /) -> List[Stop]:
     ]
 
 
-def extract_stop_points(data: dict, /) -> List[StopPoint]:
+def extract_stop_points(data: Dict[str, Any], /) -> List[StopPoint]:
     return [
         StopPoint(id=stop_point['id'],
                   name=stop_point['name'],
@@ -81,15 +81,15 @@ def extract_stop_points(data: dict, /) -> List[StopPoint]:
     ]
 
 
-def extract_stop(data: dict, /) -> Stop:
+def extract_stop(data: Dict[str, Any], /) -> Stop:
     return Stop(id=data['id'], name=data['passengerName'])
 
 
-def extract_stop_point(data: dict, /) -> StopPoint:
+def extract_stop_point(data: Dict[str, Any], /) -> StopPoint:
     return StopPoint(id=data['id'], name=data['passengerName'], code=data['stopPointCode'])
 
 
-def extract_stop_passages(data: dict, /, *, now: datetime) -> Tuple[Stop, List[Route], List[Passage]]:
+def extract_stop_passages(data: Dict[str, Any], /, *, now: datetime) -> Tuple[Stop, List[Route], List[Passage]]:
     stop = Stop(name=data['stopName'])
 
     routes = [extract_route(route) for route in data['routes']]
@@ -126,7 +126,7 @@ def extract_stop_passage(passage: Dict[str, Any], /, *, stop: Stop, now: datetim
                    old=old)
 
 
-def extract_stop_point_passages(data: dict, /, *, now: datetime) -> Tuple[Stop, List[Route], List[Passage]]:
+def extract_stop_point_passages(data: Dict[str, Any], /, *, now: datetime) -> Tuple[Stop, List[Route], List[Passage]]:
     return extract_stop_passages(data, now=now)
 
 
@@ -134,7 +134,7 @@ def extract_trip_passages_list(passages: List[Dict[str, Any]], /, *, trip: Trip,
     return [extract_trip_passage(passage, trip=trip, old=old) for passage in passages]
 
 
-def extract_trip_passage(data: dict, /, *, trip: Trip, old: bool) -> Passage:
+def extract_trip_passage(data: Dict[str, Any], /, *, trip: Trip, old: bool) -> Passage:
     stop = Stop(id=data['stop']['id'],
                 name=data['stop']['name'],
                 number=data['stop']['shortName'])
@@ -149,7 +149,7 @@ def extract_trip_passage(data: dict, /, *, trip: Trip, old: bool) -> Passage:
                    old=old)
 
 
-def extract_trip_passages(data: dict, /) -> Tuple[Optional[Trip], List[Passage]]:
+def extract_trip_passages(data: Dict[str, Any], /) -> Tuple[Optional[Trip], List[Passage]]:
     route = Route(name=data.get('routeName', None))
     trip = Trip(route=route, direction=data.get('directionText', None))
     passages = extract_trip_passages_list(data['old'], trip=trip, old=True) + \
@@ -157,11 +157,11 @@ def extract_trip_passages(data: dict, /) -> Tuple[Optional[Trip], List[Passage]]
     return trip, passages
 
 
-def extract_routes(data: dict, /) -> List[Route]:
+def extract_routes(data: Dict[str, Any], /) -> List[Route]:
     return [extract_route(route) for route in data['routes']]
 
 
-def extract_route_stops(data: dict, /) -> Tuple[Route, List[Stop]]:
+def extract_route_stops(data: Dict[str, Any], /) -> Tuple[Route, List[Stop]]:
     route = extract_route(data['route'])
     stops = [
         Stop(id=stop['id'], name=stop['name'], number=stop['number'])
@@ -170,7 +170,7 @@ def extract_route_stops(data: dict, /) -> Tuple[Route, List[Stop]]:
     return route, stops
 
 
-def extract_route(data: dict, /) -> Route:
+def extract_route(data: Dict[str, Any], /) -> Route:
     return Route(id=data['id'],
                  name=data['name'],
                  type=data.get('routeType', None),
@@ -179,19 +179,19 @@ def extract_route(data: dict, /) -> Route:
                  alerts=data['alerts'])
 
 
-def extract_route_paths(data: dict, /) -> List[Path]:
+def extract_route_paths(data: Dict[str, Any], /) -> List[Path]:
     return extract_paths(data)
 
 
-def extract_vehicle_paths(data: dict, /) -> List[Path]:
+def extract_vehicle_paths(data: Dict[str, Any], /) -> List[Path]:
     return extract_paths(data)
 
 
-def extract_paths(data: dict, /) -> List[Path]:
+def extract_paths(data: Dict[str, Any], /) -> List[Path]:
     return [extract_path(path) for path in data['paths']]
 
 
-def extract_path(data: dict, /) -> Path:
+def extract_path(data: Dict[str, Any], /) -> Path:
     waypoints = [
         (point['lat'] / 3_600_000, point['lon'] / 3_600_000)
         for point in data['wayPoints']
@@ -199,11 +199,11 @@ def extract_path(data: dict, /) -> Path:
     return Path(color=data['color'], waypoints=waypoints)
 
 
-def extract_vehicles(data: dict, /) -> List[Vehicle]:
+def extract_vehicles(data: Dict[str, Any], /) -> List[Vehicle]:
     return [extract_vehicle(vehicle) for vehicle in data['vehicles']]
 
 
-def extract_vehicle(data: dict, /) -> Vehicle:
+def extract_vehicle(data: Dict[str, Any], /) -> Vehicle:
     active = 'isDeleted' not in data
 
     latitude = data['latitude'] / 3_600_000 if 'latitude' in data else None

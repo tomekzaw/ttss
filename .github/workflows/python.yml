@@ -37,7 +37,7 @@ jobs:
         run: flake8 . --ignore E501 --exclude .venv
 
       - name: Check types with mypy
-        run: mypy .
+        run: mypy . --strict
 
       - name: Install Python package
         run: python setup.py install
