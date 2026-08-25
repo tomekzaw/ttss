@@ -1,8 +1,0 @@
-build
-flake8
-freezegun
-mypy
-pytest
-requests-mock
-twine
-types-requests
