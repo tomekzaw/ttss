@@ -1,8 +1,8 @@
 from datetime import datetime, time
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pytest
-import pytz
 from freezegun import freeze_time
 from requests_mock.mocker import Mocker
 
@@ -10,7 +10,7 @@ from ttss import Passage, Route, Status, Stop, StopPoint, Trip, TTSS, Vehicle
 
 base_url = 'http://www.ttss.krakow.pl'
 
-tz = pytz.timezone('Europe/Warsaw')
+tz = ZoneInfo('Europe/Warsaw')
 
 resources_dir = Path(__file__).parent / 'resources'
 
